@@ -7,6 +7,14 @@ describe 'auth api', :type => :api do
     JSON.parse(last_response.body)[key].should == value
   end
 
+  def json_should_not_contain key
+    JSON.parse(last_response.body).should_not have_key(key)
+  end
+
+  def status_code_is code
+    last_response.status.should eq code
+  end
+
   context 'Unauthenticated user' do
 
     before :all do
@@ -20,7 +28,7 @@ describe 'auth api', :type => :api do
         before { post('/users.json', @good_creds) }
 
         it 'returns 201 status code' do
-          last_response.status.should eq 201
+          status_code_is 201
         end
 
         it 'returns email in JSON' do
@@ -31,8 +39,8 @@ describe 'auth api', :type => :api do
       describe 'failure' do
         before { post('/users.json', @bad_creds) }
 
-        it 'returns 400 status code' do
-          last_response.status.should eq 422
+        it 'returns 422 status code' do
+          status_code_is 422
         end
 
         it 'returns errors in JSON' do
@@ -40,5 +48,34 @@ describe 'auth api', :type => :api do
         end
       end
     end
+
+    describe 'POST /users/sign_in' do
+      before { post('/users.json', @good_creds) }
+
+      describe 'success' do
+        before { post('/users/sign_in.json', @good_creds) }
+
+        it 'returns 201 status code' do
+          status_code_is 201
+        end
+
+        # it 'returns a secure token ' do
+          # json_contains 'token', '123456'
+        # end
+      end
+
+      describe 'failure' do
+        before { post('/users/sign_in.json', @bad_creds) }
+
+        it 'returns 401 status code' do
+          status_code_is 401
+        end
+
+        it 'doesn\'t return a secure token' do
+          json_should_not_contain 'token'
+        end
+      end
+    end
+
   end
 end
