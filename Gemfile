@@ -21,3 +21,20 @@ gem 'devise'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :development, :test do
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'pry'
+end
+
+group :development do
+  gem 'rake'
+end
+
+group :test do
+  gem 'rack-test'
+  gem 'guard-rspec'
+  gem 'database_cleaner'
+end
+
