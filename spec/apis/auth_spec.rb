@@ -9,11 +9,19 @@ describe 'auth api', :type => :api do
     @bad_creds = {user: {email: 'bad login'} }
   end
 
+  def register credentials
+    post('/users.json', credentials)
+  end
+
+  def sign_in credentials
+    post('/users/sign_in.json', credentials)
+  end
+
   context 'Unauthenticated user' do
 
     describe 'register via POST /users.json' do
       describe 'success' do
-        before { post('/users.json', @good_creds) }
+        before { register @good_creds }
 
         it 'returns 201 status code' do
           status_code_is 201
@@ -25,7 +33,7 @@ describe 'auth api', :type => :api do
       end
 
       describe 'failure' do
-        before { post('/users.json', @bad_creds) }
+        before { register @bad_creds }
 
         it 'returns 422 status code' do
           status_code_is 422
@@ -38,10 +46,10 @@ describe 'auth api', :type => :api do
     end
 
     describe 'sign in via POST /users/sign_in' do
-      before { post('/users.json', @good_creds) }
+      before { register @good_creds }
 
       describe 'success' do
-        before { post('/users/sign_in.json', @good_creds) }
+        before { sign_in @good_creds }
 
         it 'returns 201 status code' do
           status_code_is 201
@@ -55,7 +63,7 @@ describe 'auth api', :type => :api do
       end
 
       describe 'failure' do
-        before { post('/users/sign_in.json', @bad_creds) }
+        before { sign_in @bad_creds }
 
         it 'returns 401 status code' do
           status_code_is 401
@@ -104,6 +112,22 @@ describe 'auth api', :type => :api do
         end
       end
     end
+
+    describe 'sign out via DELETE /users/sign_out' do
+      it 'returns 204 status code' do
+        sign_in @good_creds
+        delete "/sessions/#{@token}.json"
+        User.last.authentication_token.should_not eq @token
+        status_code_is 204
+      end
+
+      it 'returns blank body' do
+        sign_in @good_creds
+        delete "/sessions/#{@token}.json"
+        last_response.body == ''
+      end
+    end
+
   end
 
 end
