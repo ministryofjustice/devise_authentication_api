@@ -3,15 +3,15 @@ require 'json'
 
 describe 'auth api', :type => :api do
 
+  before :all do
+    @email = 'joe.bloggs@example.com'
+    @good_creds = {user: {email: @email, password: 's3kr!tpa55'} }
+    @bad_creds = {user: {email: 'bad login'} }
+  end
+
   context 'Unauthenticated user' do
 
-    before :all do
-      @email = 'joe.bloggs@example.com'
-      @good_creds = {user: {email: @email, password: 's3kr!tpa55'} }
-      @bad_creds = {user: {email: 'bad login'} }
-    end
-
-    describe 'POST /users.json' do
+    describe 'register via POST /users.json' do
       describe 'success' do
         before { post('/users.json', @good_creds) }
 
@@ -37,7 +37,7 @@ describe 'auth api', :type => :api do
       end
     end
 
-    describe 'POST /users/sign_in' do
+    describe 'sign in via POST /users/sign_in' do
       before { post('/users.json', @good_creds) }
 
       describe 'success' do
@@ -68,4 +68,42 @@ describe 'auth api', :type => :api do
     end
 
   end
+
+  context 'Authenticated user' do
+    before do
+      user = User.create! @good_creds[:user]
+      @token = user.authentication_token
+    end
+
+    describe 'GET /users/token.json' do
+      describe 'sucess' do
+        before do
+          get "/users/#{@token}.json"
+        end
+
+        it 'returns 200' do
+          status_code_is 200
+        end
+
+        it 'returns email in JSON' do
+          json_contains 'email', @email
+        end
+      end
+
+      describe 'failure' do
+        before do
+          get "/users/bad_token.json"
+        end
+
+        it 'returns 401 status code' do
+          status_code_is 401
+        end
+
+        it 'returns email in JSON' do
+          json_should_not_contain 'email'
+        end
+      end
+    end
+  end
+
 end

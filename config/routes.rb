@@ -1,5 +1,8 @@
 DeviseAuthenticationApi::Application.routes.draw do
   devise_for :users
+
+  get 'users/:authentication_token' => 'tokens#show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -40,7 +43,7 @@ DeviseAuthenticationApi::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

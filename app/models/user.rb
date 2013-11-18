@@ -39,6 +39,16 @@ class User
    # You likely have this before callback set up for the token.
   before_save :ensure_authentication_token
 
+  class << self
+    def for_authentication_token token
+      if where(authentication_token: token).exists?
+        where(authentication_token: token).first
+      else
+        nil
+      end
+    end
+  end
+
   def ensure_authentication_token
     if authentication_token.blank?
       self.authentication_token = generate_authentication_token
