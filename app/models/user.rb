@@ -45,6 +45,12 @@ class User
     end
   end
 
+  alias :old_to_json :to_json
+
+  def to_json options
+    JSON.parse(old_to_json).merge(authentication_token: authentication_token).to_json
+  end
+
   private
 
   def generate_authentication_token

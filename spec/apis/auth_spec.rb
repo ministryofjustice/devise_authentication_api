@@ -47,9 +47,11 @@ describe 'auth api', :type => :api do
           status_code_is 201
         end
 
-        # it 'returns a secure token ' do
-          # json_contains 'token', '123456'
-        # end
+        it 'returns a secure token' do
+          token = User.last.authentication_token
+          token.should_not be_nil
+          json_contains 'authentication_token', token
+        end
       end
 
       describe 'failure' do
