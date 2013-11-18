@@ -3,18 +3,6 @@ require 'json'
 
 describe 'auth api', :type => :api do
 
-  def json_contains key, value
-    JSON.parse(last_response.body)[key].should == value
-  end
-
-  def json_should_not_contain key
-    JSON.parse(last_response.body).should_not have_key(key)
-  end
-
-  def status_code_is code
-    last_response.status.should eq code
-  end
-
   context 'Unauthenticated user' do
 
     before :all do
