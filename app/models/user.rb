@@ -58,7 +58,7 @@ class User
   alias :old_to_json :to_json
 
   def to_json options
-    JSON.parse(old_to_json).merge(authentication_token: authentication_token).to_json
+    JSON.parse(old_to_json).except('_id').merge(authentication_token: authentication_token).to_json
   end
 
   private
