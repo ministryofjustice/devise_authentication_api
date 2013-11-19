@@ -14,6 +14,9 @@ E.g. on mac osx:
 
 > bundle
 
+### Create indexes
+> bundle exec rake db:mongoid:create_indexes
+
 ### Run tests
 > bundle exec guard
 
