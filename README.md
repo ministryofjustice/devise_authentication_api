@@ -29,20 +29,40 @@ E.g. on mac osx:
 
     POST [host]/users.json
 
-with JSON:
+with JSON body:
 
     { user: { email: 'joe.bloggs@example.com', password: 's3kr!tpa55'} }
 
 Success:
 
-    201
+    201 Created
 
     {"email":"joe.bloggs@example.com","authentication_token":"Pm2tbZfcwfD7B1jK_wzo"}
 
-Failure:
+Failure due to invalid parameters:
 
-    422
+    422 Unprocessable Entity
 
     {"errors":{"email":["is invalid"],"password":["can't be blank"]}}
+
+### Sign in user
+
+    POST [host]/users/sign_in.json
+
+with JSON body:
+
+    { user: { email: 'joe.bloggs@example.com', password: 's3kr!tpa55'} }
+
+Success:
+
+    201 Created
+
+    {"email":"joe.bloggs@example.com","authentication_token":"Pm2tbZfcwfD7B1jK_wzo"}
+
+Failure due to invalid credential(s):
+
+    422 Unprocessable Entity
+
+    {"error":"Invalid email or password."}
 
 
