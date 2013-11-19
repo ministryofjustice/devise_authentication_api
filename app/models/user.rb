@@ -1,9 +1,10 @@
 class User
   include Mongoid::Document
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+         # :confirmable
 
   ## Database authenticatable
   field :email,              type: String, default: ""
@@ -36,13 +37,31 @@ class User
 
 
   field :authentication_token, type: String
-   # You likely have this before callback set up for the token.
+
+  index({ authentication_token: 1 }, { unique: true })
+
   before_save :ensure_authentication_token
+
+  class << self
+    def for_authentication_token token
+      if where(authentication_token: token).exists?
+        where(authentication_token: token).first
+      else
+        nil
+      end
+    end
+  end
 
   def ensure_authentication_token
     if authentication_token.blank?
       self.authentication_token = generate_authentication_token
     end
+  end
+
+  alias :old_to_json :to_json
+
+  def to_json options
+    JSON.parse(old_to_json).except('_id').merge(authentication_token: authentication_token).to_json
   end
 
   private
