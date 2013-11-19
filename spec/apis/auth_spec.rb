@@ -23,20 +23,29 @@ describe 'auth api', :type => :api do
       describe 'success' do
         before { register @good_creds }
 
-        it 'returns 201 status code' do
-          status_code_is 201
+        it 'returns 201 Created status code' do
+          status_code_is 201 # Created
         end
 
         it 'returns email in JSON' do
           json_contains 'email', @email
+        end
+
+        it 'does not return _id in JSON' do
+          json_should_not_contain '_id'
+        end
+
+        it 'returns authentication_token in JSON' do
+          token = User.last.authentication_token
+          json_contains 'authentication_token', token
         end
       end
 
       describe 'failure' do
         before { register @bad_creds }
 
-        it 'returns 422 status code' do
-          status_code_is 422
+        it 'returns 422 Unprocessable Entity status code' do
+          status_code_is 422 # Unprocessable Entity
         end
 
         it 'returns errors in JSON' do
@@ -52,7 +61,7 @@ describe 'auth api', :type => :api do
         before { sign_in @good_creds }
 
         it 'returns 201 status code' do
-          status_code_is 201
+          status_code_is 201 # Created
         end
 
         it 'returns a secure token' do
@@ -65,8 +74,8 @@ describe 'auth api', :type => :api do
       describe 'failure' do
         before { sign_in @bad_creds }
 
-        it 'returns 401 status code' do
-          status_code_is 401
+        it 'returns 401 Unauthorized status code' do
+          status_code_is 401 # Unauthorized
         end
 
         it 'doesn\'t return a secure token' do
@@ -83,8 +92,8 @@ describe 'auth api', :type => :api do
       @token = user.authentication_token
     end
 
-    describe 'GET /users/token.json' do
-      describe 'sucess' do
+    describe 'GET /users/:token.json' do
+      describe 'success' do
         before do
           get "/users/#{@token}.json"
         end
@@ -103,8 +112,8 @@ describe 'auth api', :type => :api do
           get "/users/bad_token.json"
         end
 
-        it 'returns 401 status code' do
-          status_code_is 401
+        it 'returns 401 Unauthorized status code' do
+          status_code_is 401 # Unauthorized
         end
 
         it 'returns email in JSON' do
@@ -114,17 +123,32 @@ describe 'auth api', :type => :api do
     end
 
     describe 'sign out via DELETE /users/sign_out' do
-      it 'returns 204 status code' do
-        sign_in @good_creds
-        delete "/sessions/#{@token}.json"
-        User.last.authentication_token.should_not eq @token
-        status_code_is 204
+      before { sign_in @good_creds }
+
+      describe 'success' do
+        it 'returns 204 No Content status code' do
+          delete "/sessions/#{@token}.json"
+          User.last.authentication_token.should_not eq @token
+          status_code_is 204 # No Content
+        end
+
+        it 'returns blank body' do
+          delete "/sessions/#{@token}.json"
+          last_response.body == ''
+        end
       end
 
-      it 'returns blank body' do
-        sign_in @good_creds
-        delete "/sessions/#{@token}.json"
-        last_response.body == ''
+      describe 'failure' do
+        it 'returns 401 Unauthorized status code' do
+          delete "/sessions/bad_token.json"
+          User.last.authentication_token.should eq @token
+          status_code_is 401 # Unauthorized
+        end
+
+        it 'returns blank body' do
+          delete "/sessions/bad_token.json"
+          last_response.body == ''
+        end
       end
     end
 
