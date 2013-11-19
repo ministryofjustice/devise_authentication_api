@@ -21,3 +21,28 @@ E.g. on mac osx:
 > bundle exec rails s
 
 
+## Usage
+
+*Note: API subject to change*
+
+### Register user
+
+    POST [host]/users.json
+
+with JSON:
+
+    { user: { email: 'joe.bloggs@example.com', password: 's3kr!tpa55'} }
+
+Success:
+
+    201
+
+    {"email":"joe.bloggs@example.com","authentication_token":"Pm2tbZfcwfD7B1jK_wzo"}
+
+Failure:
+
+    422
+
+    {"errors":{"email":["is invalid"],"password":["can't be blank"]}}
+
+
