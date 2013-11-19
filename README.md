@@ -37,7 +37,7 @@ Success:
 
     201 Created
 
-    {"email":"joe.bloggs@example.com"}
+    {"email":"joe.bloggs@example.com","authentication_token":"Pm2tbZfcwfD7B1jK_wzo"}
 
 Failure due to invalid parameters:
 
