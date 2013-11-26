@@ -26,6 +26,7 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'pry'
+  gem 'clogger' # Rack middleware for logging HTTP requests
 end
 
 group :development do
