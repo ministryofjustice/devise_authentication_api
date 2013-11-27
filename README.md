@@ -21,7 +21,7 @@ E.g. on mac osx:
 > bundle exec guard
 
 ### Run server
-> bundle exec rails s
+> bundle exec rackup -p 9393
 
 
 ## Usage
