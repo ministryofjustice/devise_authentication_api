@@ -30,7 +30,7 @@ E.g. on mac osx:
 
 ### Register user
 
-    POST [host]/users.json
+    POST [host]/users
 
     # with JSON body:
 
@@ -51,7 +51,7 @@ Failure due to invalid parameters:
 
 ### Sign in user
 
-    POST [host]/users/sign_in.json
+    POST [host]/users/sign_in
 
     # with JSON body:
 
@@ -72,7 +72,7 @@ Failure due to invalid credential(s):
 
 ### Verify user token
 
-    GET [host]/users/[authentication_token].json
+    GET [host]/users/[authentication_token]
 
 Success:
 
@@ -89,7 +89,7 @@ Failure due to invalid token:
 
 ### Sign out user
 
-    DELETE [host]/sessions/[token].json
+    DELETE [host]/sessions/[token]
 
 Success:
 
