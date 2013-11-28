@@ -10,10 +10,11 @@
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
 
-# Although this is not needed for an api-only application, rails4 
-# requires secret_key_base or secret_toke to be defined, otherwise an 
+unless Rails.env.production?
+  ENV['SECRET_KEY_BASE'] = 'fd63a4c926f127cff27801980f7857db3159fbb3f1b030408a2cd91dbde0f8153efe61fcbc97ff247138ea2b0ab7fe5d40e6fd061350bb62c125728c271e81b2'
+end
+
+# Although this is not needed for an api-only application, rails4
+# requires secret_key_base or secret_toke to be defined, otherwise an
 # error is raised.
-# Using secret_token for rails3 compatibility. Change to secret_key_base
-# to avoid deprecation warning.
-# Can be safely removed in a rails3 api-only application.
-DeviseAuthenticationApi::Application.config.secret_token = 'fd63a4c926f127cff27801980f7857db3159fbb3f1b030408a2cd91dbde0f8153efe61fcbc97ff247138ea2b0ab7fe5d40e6fd061350bb62c125728c271e81b2'
+DeviseAuthenticationApi::Application.config.secret_key_base = ENV['SECRET_KEY_BASE']
