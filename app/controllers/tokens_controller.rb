@@ -5,9 +5,10 @@ class TokensController < ApplicationController
   def show
     token = params[:authentication_token]
     if (user = User.for_authentication_token(token)) && Devise.secure_compare(user.authentication_token, token)
-      respond_with user
+      response.headers["X-USER-ID"]=user.email
+      render text: ''
     else
-      render text: '{"error":"Invalid token."}', status: :unauthorized
+      render text: '', status: :unauthorized
     end
   end
 
