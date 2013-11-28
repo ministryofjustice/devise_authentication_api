@@ -10,16 +10,16 @@ describe 'auth api', :type => :api do
   end
 
   def register credentials
-    post('/users.json', credentials)
+    post('/users', credentials)
   end
 
   def sign_in credentials
-    post('/users/sign_in.json', credentials)
+    post('/users/sign_in', credentials)
   end
 
   context 'Unauthenticated user' do
 
-    describe 'register via POST /users.json' do
+    describe 'register via POST /users' do
       describe 'success' do
         before { register @good_creds }
 
@@ -92,10 +92,10 @@ describe 'auth api', :type => :api do
       @token = user.authentication_token
     end
 
-    describe 'GET /users/:token.json' do
+    describe 'GET /users/:token' do
       describe 'success' do
         before do
-          get "/users/#{@token}.json"
+          get "/users/#{@token}"
         end
 
         it 'returns 200' do
@@ -109,7 +109,7 @@ describe 'auth api', :type => :api do
 
       describe 'failure' do
         before do
-          get "/users/bad_token.json"
+          get "/users/bad_token"
         end
 
         it 'returns 401 Unauthorized status code' do
@@ -127,26 +127,26 @@ describe 'auth api', :type => :api do
 
       describe 'success' do
         it 'returns 204 No Content status code' do
-          delete "/sessions/#{@token}.json"
+          delete "/sessions/#{@token}"
           User.last.authentication_token.should_not eq @token
           status_code_is 204 # No Content
         end
 
         it 'returns blank body' do
-          delete "/sessions/#{@token}.json"
+          delete "/sessions/#{@token}"
           last_response.body == ''
         end
       end
 
       describe 'failure' do
         it 'returns 401 Unauthorized status code' do
-          delete "/sessions/bad_token.json"
+          delete "/sessions/bad_token"
           User.last.authentication_token.should eq @token
           status_code_is 401 # Unauthorized
         end
 
         it 'returns blank body' do
-          delete "/sessions/bad_token.json"
+          delete "/sessions/bad_token"
           last_response.body == ''
         end
       end

@@ -1,8 +1,8 @@
 DeviseAuthenticationApi::Application.routes.draw do
-  devise_for :users
+  devise_for :users, defaults: {format: :json}
 
-  get    'users/:authentication_token'    => 'tokens#show'
-  delete 'sessions/:authentication_token' => 'sessions#destroy'
+  get    'users/:authentication_token'    => 'tokens#show', defaults: {format: :json}
+  delete 'sessions/:authentication_token' => 'sessions#destroy', defaults: {format: :json}
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
