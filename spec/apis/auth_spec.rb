@@ -102,9 +102,14 @@ describe 'auth api', :type => :api do
           status_code_is 200
         end
 
-        it 'returns email in JSON' do
-          json_contains 'email', @email
+        it 'returns X-USER-ID header' do
+          last_response.headers['X-USER-ID'].should == @email
         end
+
+        it 'returns blank body' do
+          last_response.body == ''
+        end
+
       end
 
       describe 'failure' do
@@ -116,8 +121,12 @@ describe 'auth api', :type => :api do
           status_code_is 401 # Unauthorized
         end
 
-        it 'returns email in JSON' do
-          json_should_not_contain 'email'
+        it 'does not return X-USER-ID header' do
+          last_response.headers['X-USER-ID'].should == nil
+        end
+
+        it 'returns blank body' do
+          last_response.body.should == ''
         end
       end
     end

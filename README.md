@@ -78,13 +78,13 @@ Success:
 
     200 OK
 
-    {"email":"joe.bloggs@example.com","authentication_token":"LfeEnhm9XYjCWi-Qef-H"}
+    HTTP headers:
+
+    X-USER-ID: joe.bloggs@example.com
 
 Failure due to invalid token:
 
     401 Unauthorized
-
-    {"error":"Invalid token."}
 
 
 ### Sign out user
