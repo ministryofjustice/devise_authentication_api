@@ -1,3 +1,4 @@
+
 require 'spec_helper'
 require 'json'
 
@@ -131,7 +132,7 @@ describe 'auth api', :type => :api do
       end
     end
 
-    describe 'sign out via DELETE /users/sign_out' do
+    describe 'sign out via DELETE /sessions/[token]' do
       before { sign_in @good_creds }
 
       describe 'success' do

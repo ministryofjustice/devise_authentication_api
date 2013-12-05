@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if (user = User.for_authentication_token(token)) && Devise.secure_compare(user.authentication_token, token)
       user.authentication_token = nil
       user.save!
-      respond_with user
+      render text: '', status: :no_content
     else
       render text: '{"error":"Invalid token."}', status: :unauthorized
     end
