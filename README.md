@@ -51,7 +51,7 @@ Failure due to invalid parameters:
 
 ### Sign in user
 
-    POST [host]/users/sign_in
+    POST [host]/sessions
 
     # with JSON body:
 
