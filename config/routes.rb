@@ -1,7 +1,18 @@
 DeviseAuthenticationApi::Application.routes.draw do
-  devise_for :users, defaults: {format: :json}
+  devise_for :users, defaults: {format: :json}, skip: [:sessions, :passwords, :confirmations, :registrations]
 
+  as :user do
+    # registration
+    post    '/users'     => 'devise/registrations#create',  as: 'user_registration', defaults: {format: :json}
+
+    # session creation
+    post    '/sessions'  => 'devise/sessions#create',  as: 'user_session', defaults: {format: :json}
+  end
+
+  # token based authentication
   get    'users/:authentication_token'    => 'tokens#show', defaults: {format: :json}
+
+  # session deletion
   delete 'sessions/:authentication_token' => 'sessions#destroy', defaults: {format: :json}
 
   # The priority is based upon order of creation: first created -> highest priority.

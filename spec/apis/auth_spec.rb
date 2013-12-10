@@ -15,7 +15,7 @@ describe 'auth api', :type => :api do
   end
 
   def sign_in credentials
-    post('/users/sign_in', credentials)
+    post('/sessions', credentials)
   end
 
   context 'Unauthenticated user' do
@@ -55,7 +55,7 @@ describe 'auth api', :type => :api do
       end
     end
 
-    describe 'sign in via POST /users/sign_in' do
+    describe 'sign in via POST /sessions' do
       before { register @good_creds }
 
       describe 'success' do
