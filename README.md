@@ -34,7 +34,7 @@ E.g. on mac osx:
 
     # with JSON body:
 
-    { user: { email: 'joe.bloggs@example.com', password: 's3kr!tpa55'} }
+    { "user": { "email": "joe.bloggs@example.com", "password": "s3kr!tpa55"} }
 
 Success:
 
@@ -55,7 +55,7 @@ Failure due to invalid parameters:
 
     # with JSON body:
 
-    { user: { email: 'joe.bloggs@example.com', password: 's3kr!tpa55'} }
+    { "user": { "email": "joe.bloggs@example.com", "password": "s3kr!tpa55"} }
 
 Success:
 
