@@ -1,5 +1,19 @@
 # devise_authentication_api
 
+## High level design
+
+An API to provide authenication functionality to a simple authentication layer. This 'layer' protects underlying APIs from unauthenticated access from user-facing applications, as shown below:
+
+![image](docs/auth-high-level-design.png)
+
+The authentication layer is intended to be a standalone reverse proxy. However, currently it is implemented as a [ruby/rack middleware application](https://github.com/ministryofjustice/x-moj-auth) and a PHP membrane application.
+
+## User states
+
+Each user is known to the authentication API, and can exist in a number of persistent states:
+
+![image](docs/auth-state-transition.png)
+
 ## Local installation
 
 ### Install mongodb
