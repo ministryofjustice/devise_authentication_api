@@ -5,6 +5,10 @@ module ApiHelper
     Rails.application
   end
 
+  def json_includes key
+    JSON.parse(last_response.body)[key].should_not be_blank
+  end
+
   def json_contains key, value
     JSON.parse(last_response.body)[key].should == value
   end

@@ -45,6 +45,10 @@ describe 'auth api', :type => :api do
           token = User.last.authentication_token
           json_contains 'authentication_token', token
         end
+
+        it 'returns confirmation_token in JSON' do
+          json_includes 'confirmation_token'
+        end
       end
 
       describe 'failure' do

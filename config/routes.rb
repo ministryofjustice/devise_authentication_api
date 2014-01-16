@@ -1,13 +1,17 @@
 DeviseAuthenticationApi::Application.routes.draw do
-  devise_for :users, defaults: {format: :json}, skip: [:sessions, :passwords, :registrations]
+  devise_for :users, defaults: {format: :json}, skip: [:sessions, :passwords, :confirmations, :registrations]
 
   as :user do
     # registration
-    post    '/users'     => 'devise/registrations#create',  as: 'user_registration', defaults: {format: :json}
+    post '/users' => 'registrations#create', as: 'user_registration', defaults: {format: :json}
 
     # session creation
-    post    '/sessions'  => 'devise/sessions#create',  as: 'user_session', defaults: {format: :json}
+    post '/sessions' => 'devise/sessions#create', as: 'user_session', defaults: {format: :json}
+
   end
+
+  # registration confirmation
+  get    'users/confirmation/:confirmation_token' => 'confirmations#create', as: 'user_confirmation', defaults: {format: :json}
 
   # token based authentication
   get    'users/:authentication_token'    => 'tokens#show', defaults: {format: :json}

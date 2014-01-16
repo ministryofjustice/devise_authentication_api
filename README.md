@@ -54,13 +54,29 @@ Success:
 
     201 Created
 
-    {"email":"joe.bloggs@example.com","authentication_token":"Pm2tbZfcwfD7B1jK_wzo"}
+    {"email":"joe.bloggs@example.com","authentication_token":"Pm2tbZfcwfD7B1jK_wzo","confirmation_token":"b614285c-6a10"}
 
 Failure due to invalid parameters:
 
     422 Unprocessable Entity
 
     {"errors":{"email":["is invalid"],"password":["can't be blank"]}}
+
+
+### Confirm registration
+
+    POST [host]/users/confirmation/[confirmation_token]
+
+Success:
+
+    204 No Content
+
+Failure due to invalid parameters:
+
+    422 Unprocessable Entity
+
+    '{"error":"Invalid token."}'
+
 
 
 ### Sign in user
@@ -82,6 +98,7 @@ Failure due to invalid credential(s):
     401 Unauthorized
 
     {"error":"Invalid email or password."}
+
 
 
 ### Verify user token
