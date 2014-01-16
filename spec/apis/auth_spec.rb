@@ -10,6 +10,11 @@ describe 'auth api', :type => :api do
     @bad_creds = {user: {email: 'bad login'} }
   end
 
+  def register_and_confirm credentials
+    register credentials
+    User.last.confirm!
+  end
+
   def register credentials
     post('/users', credentials)
   end
@@ -18,11 +23,11 @@ describe 'auth api', :type => :api do
     post('/sessions', credentials)
   end
 
-  context 'Unauthenticated user' do
+  context 'unauthenticated user' do
 
-    describe 'register via POST /users' do
+    describe 'registers via POST /users' do
       describe 'success' do
-        before { register @good_creds }
+        before { register_and_confirm @good_creds }
 
         it 'returns 201 Created status code' do
           status_code_is 201 # Created
@@ -56,7 +61,7 @@ describe 'auth api', :type => :api do
     end
 
     describe 'sign in via POST /sessions' do
-      before { register @good_creds }
+      before { register_and_confirm @good_creds }
 
       describe 'success' do
         before { sign_in @good_creds }
@@ -87,7 +92,7 @@ describe 'auth api', :type => :api do
 
   end
 
-  context 'Authenticated user' do
+  context 'authenticated user' do
     before do
       user = User.create! @good_creds[:user]
       @token = user.authentication_token
@@ -161,7 +166,6 @@ describe 'auth api', :type => :api do
         end
       end
     end
-
   end
 
 end

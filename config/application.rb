@@ -30,5 +30,6 @@ module DeviseAuthenticationApi
     # Disable the asset pipeline.
     config.assets.enabled = false
 
+    config.action_mailer.default_url_options = { host: ENV["SITE_URL"] || "http://localhost:9393" }
   end
 end

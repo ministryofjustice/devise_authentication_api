@@ -1,5 +1,5 @@
 DeviseAuthenticationApi::Application.routes.draw do
-  devise_for :users, defaults: {format: :json}, skip: [:sessions, :passwords, :confirmations, :registrations]
+  devise_for :users, defaults: {format: :json}, skip: [:sessions, :passwords, :registrations]
 
   as :user do
     # registration

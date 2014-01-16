@@ -19,5 +19,5 @@ DeviseAuthenticationApi::Application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
-
+  config.action_mailer.delivery_method = :letter_opener
 end
