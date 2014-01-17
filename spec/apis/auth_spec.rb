@@ -41,9 +41,8 @@ describe 'auth api', :type => :api do
           json_should_not_contain '_id'
         end
 
-        it 'returns authentication_token in JSON' do
-          token = User.last.authentication_token
-          json_contains 'authentication_token', token
+        it 'does not return authentication_token in JSON' do
+          json_should_not_contain 'authentication_token'
         end
 
         it 'returns confirmation_token in JSON' do

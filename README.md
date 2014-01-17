@@ -54,7 +54,7 @@ Success:
 
     201 Created
 
-    {"email":"joe.bloggs@example.com","authentication_token":"Pm2tbZfcwfD7B1jK_wzo","confirmation_token":"b614285c-6a10"}
+    {"email":"joe.bloggs@example.com","confirmation_token":"b614285c-6a10"}
 
 Failure due to invalid parameters:
 
@@ -116,6 +116,7 @@ Success:
 Failure due to invalid token:
 
     401 Unauthorized
+
 
 
 ### Sign out user
