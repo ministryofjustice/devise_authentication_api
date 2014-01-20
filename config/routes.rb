@@ -3,11 +3,14 @@ DeviseAuthenticationApi::Application.routes.draw do
 
   as :user do
     # registration
-    post    '/users'     => 'devise/registrations#create',  as: 'user_registration', defaults: {format: :json}
+    post '/users' => 'registrations#create', as: 'user_registration', defaults: {format: :json}
 
     # session creation
-    post    '/sessions'  => 'devise/sessions#create',  as: 'user_session', defaults: {format: :json}
+    post '/sessions' => 'devise/sessions#create', as: 'user_session', defaults: {format: :json}
   end
+
+  # registration confirmation
+  post   'users/confirmation/:confirmation_token' => 'confirmations#create', as: 'user_confirmation', defaults: {format: :json}
 
   # token based authentication
   get    'users/:authentication_token'    => 'tokens#show', defaults: {format: :json}

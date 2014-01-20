@@ -11,7 +11,7 @@ require "action_mailer/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-puts "==== RACK_ENV: #{ENV['RACK_ENV']}"
+puts "==== RAILS_ENV: #{ENV['RAILS_ENV']}"
 
 module DeviseAuthenticationApi
   class Application < Rails::Application
@@ -26,9 +26,11 @@ module DeviseAuthenticationApi
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.i18n.enforce_available_locales = false
 
     # Disable the asset pipeline.
     config.assets.enabled = false
 
+    config.action_mailer.default_url_options = { host: ENV["SITE_URL"] || "http://localhost:9393" }
   end
 end
