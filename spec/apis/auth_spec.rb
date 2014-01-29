@@ -8,6 +8,8 @@ describe 'auth api', :type => :api do
     @email = 'joe.bloggs@example.com'
     @good_creds = {user: {email: @email, password: 's3kr!tpa55'} }
     @bad_creds = {user: {email: 'bad login'} }
+
+    @bad_password = {user: {email: @email, password: 'bad'} }
   end
 
   def register_and_confirm credentials
@@ -21,6 +23,10 @@ describe 'auth api', :type => :api do
 
   def sign_in credentials
     post('/sessions', credentials)
+  end
+
+  def user
+    User.find_by(email: @email)
   end
 
   context 'unauthenticated user' do
@@ -89,6 +95,32 @@ describe 'auth api', :type => :api do
 
         it 'doesn\'t return a secure token' do
           json_should_not_contain 'token'
+        end
+
+        it 'returns "Invalid email or password." error in JSON' do
+          json_contains 'error', 'Invalid email or password.'
+        end
+      end
+
+      describe 'after X failed attempts' do
+        before do
+          attempts = ENV['MAXIMUM_ATTEMPTS'].to_i
+          attempts.times do |i|
+            sign_in @bad_password
+          end
+          sign_in @bad_password
+        end
+
+        it "has locked user's access" do
+          user.access_locked?.should be_true
+        end
+
+        it 'returns 401' do
+          status_code_is 401
+        end
+
+        it 'has account is locked error JSON' do
+          json_contains 'error', 'Your account is locked.'
         end
       end
     end
