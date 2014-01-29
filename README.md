@@ -95,6 +95,11 @@ Failure due to invalid credential(s):
 
     {"error":"Invalid email or password."}
 
+Failure after > MAXIMUM_ATTEMPTS failed attempts results in locked account:
+
+    401 Unauthorized
+
+    {"error":"Your account is locked."}
 
 
 ### Verify user token
