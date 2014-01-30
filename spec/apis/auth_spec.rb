@@ -230,19 +230,23 @@ describe 'auth api', :type => :api do
       end
     end
 
+    shared_examples 'no content success response' do
+      it 'returns 204 No Content status code' do
+        status_code_is 204
+      end
+
+      it 'returns blank body' do
+        last_response.body.should == ''
+      end
+    end
+
     describe 'change password via PATCH /users/:token' do
       describe 'success' do
         before do
           patch "/users/#{@token}", @new_password_params
         end
 
-        it 'returns 204 No Content status code' do
-          status_code_is 204
-        end
-
-        it 'returns blank body' do
-          last_response.body.should == ''
-        end
+        it_behaves_like 'no content success response'
       end
 
       describe 'failure due to invalid token' do
@@ -262,13 +266,7 @@ describe 'auth api', :type => :api do
           User.last.authentication_token.should_not eq @token
         end
 
-        it 'returns 204 No Content status code' do
-          status_code_is 204 # No Content
-        end
-
-        it 'returns blank body' do
-          last_response.body.should == ''
-        end
+        it_behaves_like 'no content success response'
       end
 
       describe 'failure due to invalid token' do
