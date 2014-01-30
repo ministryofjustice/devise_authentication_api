@@ -6,10 +6,13 @@ describe 'auth api', :type => :api do
 
   before :all do
     @email = 'joe.bloggs@example.com'
+
     @good_creds = {user: {email: @email, password: 's3kr!tpa55'} }
+    @bad_password_creds = {user: {email: @email, password: 'wrong_password'} }
     @bad_creds = {user: {email: 'bad login'} }
 
-    @bad_password = {user: {email: @email, password: 'bad'} }
+    @new_password = 'new_pass'
+    @new_password_params = {user: {password: @new_password}}
   end
 
   def register_and_confirm credentials
@@ -86,15 +89,17 @@ describe 'auth api', :type => :api do
         end
       end
 
-      describe 'failure' do
-        before { sign_in @bad_creds }
-
+      shared_examples 'unauthorized with invalid credentials error' do
         it 'returns 401 Unauthorized status code' do
           status_code_is 401 # Unauthorized
         end
 
         it 'doesn\'t return a secure token' do
-          json_should_not_contain 'token'
+          json_should_not_contain 'authentication_token'
+        end
+
+        it 'returns "Invalid email or password." error' do
+          json_contains 'error', 'Invalid email or password.'
         end
 
         it 'returns "Invalid email or password." error in JSON' do
@@ -106,7 +111,7 @@ describe 'auth api', :type => :api do
         before do
           attempts = ENV['MAXIMUM_ATTEMPTS'].to_i
           attempts.times do |i|
-            sign_in @bad_password
+            sign_in @bad_password_creds
           end
         end
 
@@ -133,9 +138,9 @@ describe 'auth api', :type => :api do
         before do
           attempts = ENV['MAXIMUM_ATTEMPTS'].to_i
           attempts.times do |i|
-            sign_in @bad_password
+            sign_in @bad_password_creds
           end
-          sign_in @bad_password
+          sign_in @bad_password_creds
         end
 
         it "has locked user's access" do
@@ -153,6 +158,18 @@ describe 'auth api', :type => :api do
             json_contains 'error', 'Your account is locked.'
           end
         end
+      end
+
+      describe 'failure due to invalid password' do
+        before { sign_in @bad_password_creds }
+
+        it_behaves_like 'unauthorized with invalid credentials error'
+      end
+
+      describe 'failure due to invalid email' do
+        before { sign_in @bad_creds }
+
+        it_behaves_like 'unauthorized with invalid credentials error'
       end
     end
 
@@ -179,7 +196,7 @@ describe 'auth api', :type => :api do
         end
 
         it 'returns blank body' do
-          last_response.body == ''
+          last_response.body.should == ''
         end
 
       end
@@ -194,7 +211,7 @@ describe 'auth api', :type => :api do
         end
 
         it 'does not return X-USER-ID header' do
-          last_response.headers['X-USER-ID'].should == nil
+          last_response.headers['X-USER-ID'].should be_nil
         end
 
         it 'returns blank body' do
@@ -203,33 +220,61 @@ describe 'auth api', :type => :api do
       end
     end
 
+    shared_examples 'unauthorized with invalid token error' do
+      it 'returns 401 Unauthorized status code' do
+        status_code_is 401 # Unauthorized
+      end
+
+      it 'returns "Invalid email or password." error' do
+        json_contains 'error', 'Invalid token.'
+      end
+    end
+
+    describe 'change password via PATCH /users/:token' do
+      describe 'success' do
+        before do
+          patch "/users/#{@token}", @new_password_params
+        end
+
+        it 'returns 204 No Content status code' do
+          status_code_is 204
+        end
+
+        it 'returns blank body' do
+          last_response.body.should == ''
+        end
+      end
+
+      describe 'failure due to invalid token' do
+        before { patch '/users/bad_token', @new_password_params }
+
+        it_behaves_like 'unauthorized with invalid token error'
+      end
+    end
+
     describe 'sign out via DELETE /sessions/[token]' do
       before { sign_in @good_creds }
 
       describe 'success' do
-        it 'returns 204 No Content status code' do
-          delete "/sessions/#{@token}"
+        before { delete "/sessions/#{@token}" }
+
+        it 'resets user authentication_token' do
           User.last.authentication_token.should_not eq @token
+        end
+
+        it 'returns 204 No Content status code' do
           status_code_is 204 # No Content
         end
 
         it 'returns blank body' do
-          delete "/sessions/#{@token}"
-          last_response.body == ''
+          last_response.body.should == ''
         end
       end
 
-      describe 'failure' do
-        it 'returns 401 Unauthorized status code' do
-          delete "/sessions/bad_token"
-          User.last.authentication_token.should eq @token
-          status_code_is 401 # Unauthorized
-        end
+      describe 'failure due to invalid token' do
+        before { delete "/sessions/bad_token" }
 
-        it 'returns blank body' do
-          delete "/sessions/bad_token"
-          last_response.body == ''
-        end
+        it_behaves_like 'unauthorized with invalid token error'
       end
     end
   end

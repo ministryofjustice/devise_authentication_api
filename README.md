@@ -120,6 +120,26 @@ Failure due to invalid token:
 
 
 
+### User change password
+
+    PATCH [host]/users/[authentication_token]
+
+    # with JSON body:
+
+    { "user": { "password": "n3w-s3kr!tpa55" } }
+
+Success:
+
+    204 No Content
+
+Failure due to invalid parameters:
+
+    422 Unprocessable Entity
+
+    '{"error":"Invalid token."}'
+
+
+
 ### Sign out user
 
     DELETE [host]/sessions/[token]
