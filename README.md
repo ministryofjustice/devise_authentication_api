@@ -132,11 +132,18 @@ Success:
 
     204 No Content
 
-Failure due to invalid parameters:
+Failure due to invalid authentication_token:
+
+    401 Unauthorized
+
+    '{"error":"Invalid token."}'
+
+Failure due to invalid password:
 
     422 Unprocessable Entity
 
-    '{"error":"Invalid token."}'
+    {"errors":{"password":["is too short (minimum is 8 characters)"]}}
+
 
 
 
