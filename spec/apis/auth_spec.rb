@@ -102,7 +102,34 @@ describe 'auth api', :type => :api do
         end
       end
 
-      describe 'after X failed attempts' do
+      describe 'after MAXIMUM_ATTEMPTS failed attempts' do
+        before do
+          attempts = ENV['MAXIMUM_ATTEMPTS'].to_i
+          attempts.times do |i|
+            sign_in @bad_password
+          end
+        end
+
+        it "has not locked user's access" do
+          user.access_locked?.should be_false
+        end
+
+        context 'sign in attempt with good password' do
+          before { sign_in @good_creds }
+
+          it 'returns 201 status code' do
+            status_code_is 201 # Created
+          end
+
+          it 'returns a secure token' do
+            token = User.last.authentication_token
+            token.should_not be_nil
+            json_contains 'authentication_token', token
+          end
+        end
+      end
+
+      describe 'after MAXIMUM_ATTEMPTS + 1 failed attempts' do
         before do
           attempts = ENV['MAXIMUM_ATTEMPTS'].to_i
           attempts.times do |i|
@@ -115,12 +142,16 @@ describe 'auth api', :type => :api do
           user.access_locked?.should be_true
         end
 
-        it 'returns 401' do
-          status_code_is 401
-        end
+        context 'sign in attempt with good password' do
+          before { sign_in @good_creds }
 
-        it 'has account is locked error JSON' do
-          json_contains 'error', 'Your account is locked.'
+          it 'returns 401 Unauthorized status code' do
+            status_code_is 401
+          end
+
+          it 'has account is locked error JSON' do
+            json_contains 'error', 'Your account is locked.'
+          end
         end
       end
     end
