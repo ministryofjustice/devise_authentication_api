@@ -14,6 +14,16 @@ Each user is known to the authentication API, and can exist in a number of persi
 
 ![image](docs/auth-state-transition.png)
 
+## User types
+
+There is a hierarchical user model for the API, as follows:
+
+* *Superuser*: a pseudo-user. Super users are all users of a separate management API. The separate management API should be accessed over a separate network to ensure that superuser actions are not available to any normal system users. There is no authentication for superusers, as access to the secure network is the authentication mechanism. A superuser is therefore 'anyone with access to the secure network'. Only superusers can create and manage administrators.
+* *Administrator*: Administrators have the role 'administrator' and have the exclusive rights to manage all users except administrators. For example, an administrator can remove the account of a basic user. 
+* *Basic*: all real users who are not administrators. These users can be self-created, but they cannot alter the data of any other user.
+
+Note: Administrator is the only user type that equates to a role stored against the user account.
+
 ## Local installation
 
 ### Install mongodb
