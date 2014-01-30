@@ -7,12 +7,17 @@ describe 'auth api', :type => :api do
   before :all do
     @email = 'joe.bloggs@example.com'
 
-    @good_creds = {user: {email: @email, password: 's3kr!tpa55'} }
+    @password = 's3kr!tpa55'
+    @too_short_password = 'pass'
+
+    @good_creds =         {user: {email: @email, password: @password} }
     @bad_password_creds = {user: {email: @email, password: 'wrong_password'} }
-    @bad_creds = {user: {email: 'bad login'} }
+    @short_password_creds = {user: {email: @email, password: @too_short_password} }
+    @bad_creds =          {user: {email: 'bad login'} }
 
     @new_password = 'new_pass'
     @new_password_params = {user: {password: @new_password}}
+    @too_short_password_params = {user: {password: @too_short_password}}
   end
 
   def register_and_confirm credentials
@@ -57,9 +62,13 @@ describe 'auth api', :type => :api do
         it 'returns confirmation_token in JSON' do
           json_includes 'confirmation_token'
         end
+
+        it 'sets user password' do
+          User.last.valid_password?(@password).should be_true
+        end
       end
 
-      describe 'failure' do
+      describe 'failure due to bad email and missing password' do
         before { register @bad_creds }
 
         it 'returns 422 Unprocessable Entity status code' do
@@ -68,6 +77,18 @@ describe 'auth api', :type => :api do
 
         it 'returns errors in JSON' do
           json_contains 'errors', {"email"=>["is invalid"], "password"=>["can't be blank"]}
+        end
+      end
+
+      describe 'failure due to too short password' do
+        before { register @short_password_creds }
+
+        it 'returns 422 Unprocessable Entity status code' do
+          status_code_is 422 # Unprocessable Entity
+        end
+
+        it 'returns errors in JSON' do
+          json_contains 'errors', {"password"=>["is too short (minimum is 8 characters)"]}
         end
       end
     end
@@ -198,7 +219,6 @@ describe 'auth api', :type => :api do
         it 'returns blank body' do
           last_response.body.should == ''
         end
-
       end
 
       describe 'failure' do
@@ -225,7 +245,7 @@ describe 'auth api', :type => :api do
         status_code_is 401 # Unauthorized
       end
 
-      it 'returns "Invalid email or password." error' do
+      it 'returns "Invalid token." error' do
         json_contains 'error', 'Invalid token.'
       end
     end
@@ -247,12 +267,38 @@ describe 'auth api', :type => :api do
         end
 
         it_behaves_like 'no content success response'
+
+        it 'changes user password' do
+          User.last.valid_password?(@new_password)
+        end
+      end
+
+      describe 'failure due to short password' do
+        before { patch "/users/#{@token}", @too_short_password_params }
+
+        it 'returns 422 Unprocessable Entity status code' do
+          status_code_is 422 # Unprocessable Entity
+        end
+
+        it 'returns "Invalid token." error' do
+          json_contains 'errors',  {"password"=>["is too short (minimum is 8 characters)"]}
+        end
+
+        it 'does not change user password' do
+          User.last.valid_password?(@new_password).should be_false
+          User.last.valid_password?(@password).should be_true
+        end
       end
 
       describe 'failure due to invalid token' do
         before { patch '/users/bad_token', @new_password_params }
 
         it_behaves_like 'unauthorized with invalid token error'
+
+        it 'does not change user password' do
+          User.last.valid_password?(@new_password).should be_false
+          User.last.valid_password?(@password).should be_true
+        end
       end
     end
 
