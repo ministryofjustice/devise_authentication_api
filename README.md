@@ -1,19 +1,5 @@
 # devise_authentication_api
 
-## High level design
-
-An API to provide authenication functionality to a simple authentication layer. This 'layer' protects underlying APIs from unauthenticated access from user-facing applications, as shown below:
-
-![image](docs/auth-high-level-design.png)
-
-The authentication layer is intended to be a standalone reverse proxy. However, currently it is implemented as a [ruby/rack middleware application](https://github.com/ministryofjustice/x-moj-auth) and a PHP membrane application.
-
-## User states
-
-Each user is known to the authentication API, and can exist in a number of persistent states:
-
-![image](docs/auth-state-transition.png)
-
 ## Local installation
 
 ### Install mongodb
@@ -33,6 +19,16 @@ E.g. on mac osx:
 
 ### Run tests
 > bundle exec guard
+
+### Environment variables
+
+Number of authentication tries before locking an account.
+
+> MAXIMUM_ATTEMPTS=5
+
+Time interval in seconds to unlock the account.
+
+> UNLOCK_IN_SECS=86400
 
 ### Run server
 > bundle exec rackup -p 9393
@@ -99,6 +95,11 @@ Failure due to invalid credential(s):
 
     {"error":"Invalid email or password."}
 
+Failure after > MAXIMUM_ATTEMPTS failed attempts results in locked account:
+
+    401 Unauthorized
+
+    {"error":"Your account is locked."}
 
 
 ### Verify user token
@@ -130,4 +131,19 @@ Success:
 Failure due to invalid token:
 
     401 Unauthorized
+
+
+## High level design (proposed - not all implemented yet)
+
+An API to provide authenication functionality to a simple authentication layer. This 'layer' protects underlying APIs from unauthenticated access from user-facing applications, as shown below:
+
+![image](docs/auth-high-level-design.png)
+
+The authentication layer is intended to be a standalone reverse proxy. However, currently it is implemented as a [ruby/rack middleware application](https://github.com/ministryofjustice/x-moj-auth) and a PHP membrane application.
+
+## User states (proposed - not all implemented yet)
+
+Each user is known to the authentication API, and can exist in a number of persistent states:
+
+![image](docs/auth-state-transition.png)
 
