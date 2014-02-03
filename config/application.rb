@@ -32,5 +32,10 @@ module DeviseAuthenticationApi
     config.assets.enabled = false
 
     config.action_mailer.default_url_options = { host: ENV["SITE_URL"] || "http://localhost:9393" }
+
+    # HTTP default headers
+    config.action_dispatch.default_headers = {
+       'Cache-Control' => 'no-cache'
+    }
   end
 end

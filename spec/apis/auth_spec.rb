@@ -47,6 +47,18 @@ describe 'auth api', :type => :api do
           status_code_is 201 # Created
         end
 
+        it 'returns "Cache-Control: no-cache" in header' do
+          last_response['Cache-Control'].should == 'no-cache'
+        end
+
+        it 'returns "Content-Type: application/json; charset=utf-8" in header' do
+          last_response['Content-Type'].should == 'application/json; charset=utf-8'
+        end
+
+        it 'returns Content-Length in header' do
+          last_response['Content-Length'].should == '78'
+        end
+
         it 'returns email in JSON' do
           json_contains 'email', @email
         end
