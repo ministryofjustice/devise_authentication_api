@@ -21,6 +21,23 @@ module ApiHelper
     last_response.status.should eq code
   end
 
+  def register_and_confirm credentials
+    register credentials
+    User.last.confirm!
+  end
+
+  def register credentials
+    post('/users', credentials)
+  end
+
+  def sign_in credentials
+    post('/sessions', credentials)
+  end
+
+  def user email
+    User.find_by(email: email)
+  end
+
 end
 
 RSpec.configure do |config|
