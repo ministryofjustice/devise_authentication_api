@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
   def destroy
     token = params[:authentication_token]
-    if (user = User.for_authentication_token(token)) && Devise.secure_compare(user.authentication_token, token)
+    if user = User.for_authentication_token(token)
       user.authentication_token = nil
       user.save!
       render text: '', status: :no_content

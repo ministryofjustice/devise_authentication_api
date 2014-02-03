@@ -15,6 +15,9 @@ DeviseAuthenticationApi::Application.routes.draw do
   # token based authentication
   get    'users/:authentication_token'    => 'tokens#show', defaults: {format: :json}
 
+  # password change
+  patch  'users/:authentication_token'    => 'users#update', defaults: {format: :json}
+
   # session deletion
   delete 'sessions/:authentication_token' => 'sessions#destroy', defaults: {format: :json}
 

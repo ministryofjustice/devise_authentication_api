@@ -45,7 +45,8 @@ class User
   class << self
     def for_authentication_token token
       if where(authentication_token: token).exists?
-        where(authentication_token: token).first
+        user = find_by(authentication_token: token)
+        Devise.secure_compare(user.authentication_token, token) ? user : nil
       else
         nil
       end

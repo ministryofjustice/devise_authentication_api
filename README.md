@@ -120,6 +120,33 @@ Failure due to invalid token:
 
 
 
+### User change password
+
+    PATCH [host]/users/[authentication_token]
+
+    # with JSON body:
+
+    { "user": { "password": "n3w-s3kr!tpa55" } }
+
+Success:
+
+    204 No Content
+
+Failure due to invalid authentication_token:
+
+    401 Unauthorized
+
+    '{"error":"Invalid token."}'
+
+Failure due to invalid password:
+
+    422 Unprocessable Entity
+
+    {"errors":{"password":["is too short (minimum is 8 characters)"]}}
+
+
+
+
 ### Sign out user
 
     DELETE [host]/sessions/[token]
