@@ -55,7 +55,7 @@ describe 'registration via POST /users' do
       end
 
       it 'returns errors in JSON' do
-        json_contains 'errors', {"email"=>["is invalid"], "password"=>["can't be blank"]}
+        json_contains 'errors', {"email"=>["is invalid"]}
       end
     end
 

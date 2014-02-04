@@ -39,6 +39,7 @@ class User
   field :authentication_token, type: String
 
   index({ authentication_token: 1 }, { unique: true })
+  index({ confirmation_token: 1 }, { unique: true })
 
   before_save :ensure_authentication_token
 
@@ -74,7 +75,19 @@ class User
     fields.to_json
   end
 
+  def password_required?
+    if is_new_record?
+      false # password is not required
+    else
+      !password.nil? || !password_confirmation.nil? # password is required if it is being set
+    end
+  end
+
   private
+
+  def is_new_record?
+    !persisted?
+  end
 
   def generate_authentication_token
     loop do

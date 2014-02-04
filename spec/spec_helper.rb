@@ -2,6 +2,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 ENV['MAXIMUM_ATTEMPTS'] ||= '5'
 ENV['UNLOCK_IN_SECS'] ||= '60'
+ENV['INITIAL_ADMIN_USER_EMAIL'] ||= 'admin@testhost'
 
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'

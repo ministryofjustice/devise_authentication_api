@@ -13,6 +13,18 @@ Bundler.require(:default, Rails.env)
 
 puts "==== RAILS_ENV: #{ENV['RAILS_ENV']}"
 
+INITIALIZE_ADMIN_USER = Proc.new do
+  if ENV['INITIAL_ADMIN_USER_EMAIL'].blank?
+    raise 'you must set INITIAL_ADMIN_USER_EMAIL environment variable'
+  end
+
+  unless User.where(email: ENV['INITIAL_ADMIN_USER_EMAIL']).exists?
+    admin_user = User.new(email: ENV['INITIAL_ADMIN_USER_EMAIL'])
+    admin_user.skip_confirmation_notification! # stop email from being sent
+    admin_user.save
+  end
+end
+
 module DeviseAuthenticationApi
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -37,5 +49,9 @@ module DeviseAuthenticationApi
     config.action_dispatch.default_headers = {
        'Cache-Control' => 'no-cache'
     }
+
+    config.after_initialize do
+      INITIALIZE_ADMIN_USER
+    end
   end
 end
