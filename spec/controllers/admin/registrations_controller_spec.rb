@@ -5,11 +5,29 @@ describe 'registration of user via POST /admin/users' do
   include ApiHelper
   include_context "shared setup"
 
+  before do
+    @user_params = {user: {email: @email} }
+  end
+
+  context 'by non-admin user' do
+    before do
+      user = User.create! @good_creds[:user]
+      @token = user.authentication_token
+    end
+
+    describe 'failure' do
+      before do
+        post("/admin/#{@token}/users", @user_params)
+      end
+
+      it_behaves_like 'unauthorized with invalid token error'
+    end
+  end
+
   context 'by admin user' do
     before do
       INITIALIZE_ADMIN_USER.call # see config.after_initialize in application.rb
       @admin_token = User.last.authentication_token
-      @user_params = {user: {email: @email} }
     end
 
     describe 'success' do
