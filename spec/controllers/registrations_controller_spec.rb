@@ -43,7 +43,11 @@ describe 'registration via POST /users' do
       end
 
       it 'sets user password' do
-        User.last.valid_password?(@password).should be_true
+        user(@email).valid_password?(@password).should be_true
+      end
+
+      it 'sets is_admin_user to false' do
+        user(@email).is_admin_user.should be_false
       end
     end
 

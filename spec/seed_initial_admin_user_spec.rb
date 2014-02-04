@@ -10,6 +10,10 @@ describe 'seed initial admin user' do
     it 'has created admin user' do
       User.where(email: ENV['INITIAL_ADMIN_USER_EMAIL']).exists?.should be_true
     end
+
+    it 'has set is_admin_user to true' do
+      User.find_by(email: ENV['INITIAL_ADMIN_USER_EMAIL']).is_admin_user.should be_true
+    end
   end
 
 end
