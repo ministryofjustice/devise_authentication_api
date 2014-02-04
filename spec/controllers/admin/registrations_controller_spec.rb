@@ -76,9 +76,9 @@ describe 'registration of user via POST /admin/:token/users' do
         message.subject.should == 'Confirmation instructions'
       end
 
-      # it 'sets user password' do
-        # user(@email).valid_password?(@password).should be_true
-      # end
+      it 'sets user password blank' do
+        user(@email).encrypted_password.should be_blank
+      end
 
       it 'sets is_admin_user to false' do
         user(@email).is_admin_user.should be_false
