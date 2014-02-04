@@ -59,6 +59,36 @@ Failure due to invalid parameters:
     {"errors":{"email":["is invalid"],"password":["can't be blank"]}}
 
 
+### Admin user registers user
+
+    POST [host]/admin/:admin_authentication_token/users
+
+    # with JSON body:
+
+    { "user": { "email": "joe.bloggs@example.com" } }
+
+Success:
+
+    201 Created
+
+    {"email":"joe.bloggs@example.com","confirmation_token":"b614285c-6a10"}
+
+    # and confirmation email is sent to "joe.bloggs@example.com"
+
+Failure due to invalid admin authentication_token:
+
+    401 Unauthorized
+
+    '{"error":"Invalid token."}'
+
+Failure due to invalid email:
+
+    422 Unprocessable Entity
+
+    {"errors":{"email":["is invalid"]}}
+
+
+
 ### Confirm registration
 
     POST [host]/users/confirmation/[confirmation_token]
