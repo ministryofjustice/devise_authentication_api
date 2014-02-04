@@ -7,6 +7,9 @@ DeviseAuthenticationApi::Application.routes.draw do
 
     # session creation
     post '/sessions' => 'devise/sessions#create', as: 'user_session', defaults: {format: :json}
+
+    # admin registration of user
+    post '/admin/:authentication_token/users' => 'admin/registrations#create', defaults: {format: :json}
   end
 
   # registration confirmation
