@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'registration of user via POST /admin/users' do
+describe 'registration of user via POST /admin/:token/users' do
 
   include ApiHelper
   include_context "shared setup"
@@ -26,7 +26,7 @@ describe 'registration of user via POST /admin/users' do
 
   context 'by admin user' do
     before do
-      INITIALIZE_ADMIN_USER.call # see config.after_initialize in application.rb
+      INITIALIZE_ADMIN_USER.call
       @admin_token = User.last.authentication_token
     end
 
@@ -85,28 +85,19 @@ describe 'registration of user via POST /admin/users' do
       end
     end
 
-    # describe 'failure due to bad email and missing password' do
-      # before { register @bad_creds }
-#
-      # it 'returns 422 Unprocessable Entity status code' do
-        # status_code_is 422 # Unprocessable Entity
-      # end
-#
-      # it 'returns errors in JSON' do
-        # json_contains 'errors', {"email"=>["is invalid"]}
-      # end
-    # end
-#
-    # describe 'failure due to too short password' do
-      # before { register @short_password_creds }
-#
-      # it 'returns 422 Unprocessable Entity status code' do
-        # status_code_is 422 # Unprocessable Entity
-      # end
-#
-      # it 'returns errors in JSON' do
-        # json_contains 'errors', {"password"=>["is too short (minimum is 8 characters)"]}
-      # end
-    # end
+    describe 'failure due to bad email' do
+      before do
+        post("/admin/#{@admin_token}/users", {user: {email: 'bademail'} } )
+      end
+
+      it 'returns 422 Unprocessable Entity status code' do
+        status_code_is 422 # Unprocessable Entity
+      end
+
+      it 'returns errors in JSON' do
+        json_contains 'errors', {"email"=>["is invalid"]}
+      end
+    end
+
   end
 end
