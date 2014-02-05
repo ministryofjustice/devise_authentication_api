@@ -26,6 +26,10 @@ describe 'activation via POST /users/activation/:confirmation_token' do
       it 'sets user password' do
         user(@email).valid_password?(@password).should be_true
       end
+
+      it 'has confirmed user' do
+        user(@email).confirmed?.should be_true
+      end
     end
   end
 
@@ -62,6 +66,10 @@ describe 'activation via POST /users/activation/:confirmation_token' do
 
       it 'has not set user password' do
         user(@email).valid_password?(@password).should be_false
+      end
+
+      it 'has not confirmed user' do
+        user(@email).confirmed?.should be_false
       end
     end
   end

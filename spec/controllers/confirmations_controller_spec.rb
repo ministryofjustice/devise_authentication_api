@@ -14,6 +14,10 @@ describe 'confirmation via POST /users/confirmation/:confirmation_token' do
       end
 
       it_behaves_like 'no content success response'
+
+      it 'has confirmed user' do
+        user(@email).confirmed?.should be_true
+      end
     end
   end
 
