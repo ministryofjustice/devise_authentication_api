@@ -9,7 +9,7 @@ class ConfirmationsController < ApplicationController
     if user.errors.empty?
       render_success
     else
-      render text: '{"error":"Invalid token."}', status: :unprocessable_entity
+      render text: '{"error":"Invalid token."}', status: :unauthorized
     end
   end
 
