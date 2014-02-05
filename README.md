@@ -52,9 +52,13 @@ Success:
 
     201 Created
 
-    {"email":"joe.bloggs@example.com","confirmation_token":"b614285c-6a10"}
+    {"email":"joe.bloggs@example.com"}
 
-    # and confirmation email is sent to "joe.bloggs@example.com"
+    # and confirmation email is sent to "joe.bloggs@example.com" containing URL with confirmation_token
+
+    # if RAILS_ENV == 'test' then confirmation_token is included in response for test purposes
+
+    # e.g. {"email":"joe.bloggs@example.com", confirmation_token_for_tests_only: "Pm2tbZfcwfD7B1jK_wzo"}
 
 Failure due to invalid admin authentication_token:
 

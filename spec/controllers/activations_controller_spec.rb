@@ -10,7 +10,7 @@ describe 'activation via POST /users/activation/:confirmation_token' do
     @admin_token = User.last.authentication_token
     user_params = {user: {email: @email} }
     post("/admin/#{@admin_token}/users", user_params)
-    @confirmation_token = JSON.parse(last_response.body)['confirmation_token']
+    @confirmation_token = JSON.parse(last_response.body)['confirmation_token_for_tests_only']
     @password_params = {user: {password: @password} }
   end
 
