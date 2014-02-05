@@ -27,7 +27,7 @@ INITIALIZE_ADMIN_USER = Proc.new do
     admin_user = User.new(email: ENV['INITIAL_ADMIN_USER_EMAIL'])
     admin_user.is_admin_user = true
     admin_user.skip_confirmation_notification! # stop email from being sent
-    puts "==== xRAILS_ENV: #{ENV['RAILS_ENV']}"
+
     if Rails.env.test? || Rails.env.development?
       if ENV['TEST_INITIAL_ADMIN_PASSWORD'].blank?
         raise 'you must set TEST_INITIAL_ADMIN_PASSWORD environment variable for test and development environments'
