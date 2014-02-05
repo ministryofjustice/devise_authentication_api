@@ -15,6 +15,9 @@ DeviseAuthenticationApi::Application.routes.draw do
   # registration confirmation
   post   'users/confirmation/:confirmation_token' => 'confirmations#create', as: 'user_confirmation', defaults: {format: :json}
 
+  # registration activation and password initialization
+  post   'users/activation/:confirmation_token' => 'activations#create', defaults: {format: :json}
+
   # token based authentication
   get    'users/:authentication_token'    => 'tokens#show', defaults: {format: :json}
 

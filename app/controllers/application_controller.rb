@@ -28,4 +28,16 @@ class ApplicationController < ActionController::API
     # end
   # end
 
+  def render_success
+    render text: '', status: :no_content
+  end
+
+  def render_errors errors
+    render text: "{\"errors\":#{errors}}", status: :unprocessable_entity
+  end
+
+  def render_unauthorized
+    render text: '{"error":"Invalid token."}', status: :unauthorized
+  end
+
 end

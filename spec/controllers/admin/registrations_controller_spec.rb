@@ -49,7 +49,7 @@ describe 'registration of user via POST /admin/:token/users' do
       end
 
       it 'returns Content-Length in header' do
-        last_response['Content-Length'].should == '78'
+        last_response['Content-Length'].should == '93'
       end
 
       it 'returns email in JSON' do
@@ -64,8 +64,8 @@ describe 'registration of user via POST /admin/:token/users' do
         json_should_not_contain 'authentication_token'
       end
 
-      it 'returns confirmation_token in JSON' do
-        json_includes 'confirmation_token'
+      it 'does not return confirmation_token in JSON' do
+        json_should_not_contain 'confirmation_token'
       end
 
       it 'sends confirmation email to new user' do

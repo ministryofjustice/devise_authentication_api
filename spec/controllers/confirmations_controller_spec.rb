@@ -14,6 +14,10 @@ describe 'confirmation via POST /users/confirmation/:confirmation_token' do
       end
 
       it_behaves_like 'no content success response'
+
+      it 'has confirmed user' do
+        user(@email).confirmed?.should be_true
+      end
     end
   end
 
@@ -26,8 +30,8 @@ describe 'confirmation via POST /users/confirmation/:confirmation_token' do
         post "/users/confirmation/#{confirmation_token}"
       end
 
-      it 'returns 422 Unprocessable Entity status code' do
-        status_code_is 422
+      it 'returns 401 Unauthorized status code' do
+        status_code_is 401
       end
 
       it 'returns "Invalid token." error' do
@@ -42,8 +46,8 @@ describe 'confirmation via POST /users/confirmation/:confirmation_token' do
         post "/users/confirmation/bad_token"
       end
 
-      it 'returns 422 Unprocessable Entity status code' do
-        status_code_is 422
+      it 'returns 401 Unauthorized status code' do
+        status_code_is 401
       end
 
       it 'returns "Invalid token." error' do

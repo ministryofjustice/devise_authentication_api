@@ -38,7 +38,70 @@ Time interval in seconds to unlock the account.
 
 *Note: API subject to change*
 
-### Register user
+### Admin registration of users
+
+#### Admin user registers user
+
+    POST [host]/admin/:admin_authentication_token/users
+
+    # with JSON body:
+
+    { "user": { "email": "joe.bloggs@example.com" } }
+
+Success:
+
+    201 Created
+
+    {"email":"joe.bloggs@example.com"}
+
+    # and confirmation email is sent to "joe.bloggs@example.com" containing URL with confirmation_token
+
+    # if RAILS_ENV == 'test' then confirmation_token is included in response for test purposes
+
+    # e.g. {"email":"joe.bloggs@example.com", confirmation_token_for_tests_only: "Pm2tbZfcwfD7B1jK_wzo"}
+
+Failure due to invalid admin authentication_token:
+
+    401 Unauthorized
+
+    '{"error":"Invalid token."}'
+
+Failure due to invalid email:
+
+    422 Unprocessable Entity
+
+    {"errors":{"email":["is invalid"]}}
+
+
+#### Activate registration
+
+    POST [host]/users/activation/[confirmation_token]
+
+    # with JSON body:
+
+    { "user": { "password": "s3kr!tpa55" } }
+
+Success:
+
+    204 No Content
+
+Failure due to invalid confirmation_token:
+
+    401 Unauthorized
+
+    '{"error":"Invalid token."}'
+
+Failure due to invalid password:
+
+    422 Unprocessable Entity
+
+    {"errors":{"password":["is too short (minimum is 8 characters)"]}}
+
+
+
+### Self registration
+
+#### Register user
 
     POST [host]/users
 
@@ -59,37 +122,7 @@ Failure due to invalid parameters:
     {"errors":{"email":["is invalid"],"password":["can't be blank"]}}
 
 
-### Admin user registers user
-
-    POST [host]/admin/:admin_authentication_token/users
-
-    # with JSON body:
-
-    { "user": { "email": "joe.bloggs@example.com" } }
-
-Success:
-
-    201 Created
-
-    {"email":"joe.bloggs@example.com","confirmation_token":"b614285c-6a10"}
-
-    # and confirmation email is sent to "joe.bloggs@example.com"
-
-Failure due to invalid admin authentication_token:
-
-    401 Unauthorized
-
-    '{"error":"Invalid token."}'
-
-Failure due to invalid email:
-
-    422 Unprocessable Entity
-
-    {"errors":{"email":["is invalid"]}}
-
-
-
-### Confirm registration
+#### Confirm registration
 
     POST [host]/users/confirmation/[confirmation_token]
 
@@ -99,10 +132,9 @@ Success:
 
 Failure due to invalid parameters:
 
-    422 Unprocessable Entity
+    401 Unauthorized
 
     '{"error":"Invalid token."}'
-
 
 
 ### Sign in user
