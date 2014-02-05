@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
     if user = User.for_authentication_token(token)
       user.authentication_token = nil
       user.save!
-      render text: '', status: :no_content
+      render_success
     else
-      render text: '{"error":"Invalid token."}', status: :unauthorized
+      render_unauthorized
     end
   end
 

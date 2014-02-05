@@ -7,7 +7,7 @@ class ConfirmationsController < ApplicationController
     user = User.confirm_by_token(params[:confirmation_token])
 
     if user.errors.empty?
-      render text: '', status: :no_content
+      render_success
     else
       render text: '{"error":"Invalid token."}', status: :unprocessable_entity
     end

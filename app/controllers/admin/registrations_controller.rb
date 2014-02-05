@@ -13,7 +13,7 @@ class Admin::RegistrationsController < Devise::RegistrationsController
     if (user = User.for_authentication_token(token)) && user.is_admin_user
       # ok
     else
-      render text: '{"error":"Invalid token."}', status: :unauthorized
+      render_unauthorized
     end
 
   end
