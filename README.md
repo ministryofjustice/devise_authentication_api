@@ -59,10 +59,11 @@ Secret key base.
     require 'securerandom'
     generated_key=SecureRandom.hex(64)
 
-If using sendgrid for email.
+If using sendgrid for email, these environment variables are used in config/environment.rb
 
     SENDGRID_PASSWORD=123456789
     SENDGRID_USERNAME=an@example.com
+    SENDGRID_DOMAIN=heroku.com
 
 
 ### Run server
