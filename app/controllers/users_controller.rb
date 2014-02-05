@@ -7,21 +7,12 @@ class UsersController < ApplicationController
     token = params[:authentication_token]
 
     if !new_password
-      errors = {"password"=>["can't be blank"]}.to_json
-      render text: "{\"errors\":#{errors}}", status: :unprocessable_entity
-
+      render_errors({"password"=>["can't be blank"]}.to_json)
     elsif (user = User.for_authentication_token(token))
-      user.password = new_password
-      if user.valid?
-        user.save!
-        render text: '', status: :no_content
-      else
-        errors = user.errors.messages.to_json
-        render text: "{\"errors\":#{errors}}", status: :unprocessable_entity
-      end
+      setter = PasswordSetter.new(user)
+      setter.set_password new_password, self
     else
-      render text: '{"error":"Invalid token."}', status: :unauthorized
+      render_unauthorized
     end
   end
-
 end
