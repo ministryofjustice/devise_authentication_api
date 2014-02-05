@@ -5,6 +5,7 @@ ENV['UNLOCK_IN_SECS'] ||= '60'
 ENV['INITIAL_ADMIN_USER_EMAIL'] ||= 'admin@testhost'
 ENV['SENDER_EMAIL_ADDRESS'] ||= 'sender@testhost'
 ENV['SITE_URL'] ||= 'http://testhost'
+ENV['TEST_INITIAL_ADMIN_PASSWORD'] ||= 'testpass'
 
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
