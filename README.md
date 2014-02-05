@@ -38,7 +38,9 @@ Time interval in seconds to unlock the account.
 
 *Note: API subject to change*
 
-### Register user
+### Self registration
+
+#### Register user
 
     POST [host]/users
 
@@ -59,7 +61,24 @@ Failure due to invalid parameters:
     {"errors":{"email":["is invalid"],"password":["can't be blank"]}}
 
 
-### Admin user registers user
+#### Confirm registration
+
+    POST [host]/users/confirmation/[confirmation_token]
+
+Success:
+
+    204 No Content
+
+Failure due to invalid parameters:
+
+    422 Unprocessable Entity
+
+    '{"error":"Invalid token."}'
+
+
+### Admin registration of users
+
+#### Admin user registers user
 
     POST [host]/admin/:admin_authentication_token/users
 
@@ -88,20 +107,29 @@ Failure due to invalid email:
     {"errors":{"email":["is invalid"]}}
 
 
+#### Activate registration
 
-### Confirm registration
+    POST [host]/users/activation/[confirmation_token]
 
-    POST [host]/users/confirmation/[confirmation_token]
+    # with JSON body:
+
+    { "user": { "password": "s3kr!tpa55" } }
 
 Success:
 
     204 No Content
 
-Failure due to invalid parameters:
+Failure due to invalid confirmation_token:
+
+    401 Unauthorized
+
+    '{"error":"Invalid token."}'
+
+Failure due to invalid password:
 
     422 Unprocessable Entity
 
-    '{"error":"Invalid token."}'
+    {"errors":{"password":["is too short (minimum is 8 characters)"]}}
 
 
 

@@ -54,6 +54,16 @@ class User
         nil
       end
     end
+
+    def for_confirmation_token token
+      confirmation_token = Devise.token_generator.digest(self, :confirmation_token, token)
+
+      if where(confirmation_token: confirmation_token).exists?
+        find_by(confirmation_token: confirmation_token)
+      else
+        nil
+      end
+    end
   end
 
   def ensure_authentication_token

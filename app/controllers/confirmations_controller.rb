@@ -4,7 +4,7 @@ class ConfirmationsController < ApplicationController
 
   def create
     token = params[:confirmation_token]
-    user = User.confirm_by_token(params[:confirmation_token])
+    user = User.confirm_by_token(token)
 
     if user.errors.empty?
       render_success
