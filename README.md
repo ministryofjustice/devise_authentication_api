@@ -5,30 +5,57 @@
 ### Install mongodb
 
 E.g. on mac osx:
-> brew install mongodb
+
+    brew install mongodb
 
 ### Clone repo and install gems
-> git clone https://github.com/ministryofjustice/devise_authentication_api.git
 
-> cd devise_authentication_api
+    git clone https://github.com/ministryofjustice/devise_authentication_api.git
 
-> bundle
+    cd devise_authentication_api
+
+    bundle
 
 ### Create indexes
-> bundle exec rake db:mongoid:create_indexes
+
+    bundle exec rake db:mongoid:create_indexes
 
 ### Run tests
-> bundle exec guard
+
+    bundle exec guard
 
 ### Environment variables
 
+Email of initial admin user, an activation email will be sent to this address.
+
+    INITIAL_ADMIN_USER_EMAIL=admin@example.com
+
 Number of authentication tries before locking an account.
 
-> MAXIMUM_ATTEMPTS=5
+    MAXIMUM_ATTEMPTS=5
 
 Time interval in seconds to unlock the account.
 
-> UNLOCK_IN_SECS=86400
+    UNLOCK_IN_SECS=86400
+
+Base URL for links in emails.
+
+    SITE_URL=http://url_of_client_service.com
+
+Secret key base.
+
+    SECRET_KEY_BASE=generated_key
+
+    e.g.
+    irb
+    require 'securerandom'
+    generated_key=SecureRandom.hex(64)
+
+If using sendgrid for email.
+
+    SENDGRID_PASSWORD=123456789
+    SENDGRID_USERNAME=an@example.com
+
 
 ### Run server
 > bundle exec rackup -p 9393
