@@ -13,6 +13,11 @@ Bundler.require(:default, Rails.env)
 
 puts "==== RAILS_ENV: #{ENV['RAILS_ENV']}"
 
+if ENV['SENDER_EMAIL_ADDRESS'].blank?
+  raise 'you must set SENDER_EMAIL_ADDRESS environment variable'
+end
+
+
 INITIALIZE_ADMIN_USER = Proc.new do
   if ENV['INITIAL_ADMIN_USER_EMAIL'].blank?
     raise 'you must set INITIAL_ADMIN_USER_EMAIL environment variable'
