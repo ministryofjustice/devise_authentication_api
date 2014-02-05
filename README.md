@@ -30,6 +30,10 @@ Email of initial admin user, an activation email will be sent to this address.
 
     INITIAL_ADMIN_USER_EMAIL=admin@example.com
 
+For test and development environments, set initial admin password.
+
+    TEST_INITIAL_ADMIN_PASSWORD=test1234
+
 Number of authentication tries before locking an account.
 
     MAXIMUM_ATTEMPTS=5
@@ -37,6 +41,10 @@ Number of authentication tries before locking an account.
 Time interval in seconds to unlock the account.
 
     UNLOCK_IN_SECS=86400
+
+Sender email address for email 'from' field.
+
+    SENDER_EMAIL_ADDRESS=test@example.com
 
 Base URL for links in emails.
 

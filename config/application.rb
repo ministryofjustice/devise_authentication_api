@@ -27,7 +27,14 @@ INITIALIZE_ADMIN_USER = Proc.new do
     admin_user = User.new(email: ENV['INITIAL_ADMIN_USER_EMAIL'])
     admin_user.is_admin_user = true
     admin_user.skip_confirmation_notification! # stop email from being sent
-    admin_user.save
+
+    if Rails.env.test? || Rails.env.development?
+      if ENV['TEST_INITIAL_ADMIN_PASSWORD'].blank?
+        raise 'you must set TEST_INITIAL_ADMIN_PASSWORD environment variable for test and development environments'
+      end
+      admin_user.password = ENV['TEST_INITIAL_ADMIN_PASSWORD']
+    end
+    admin_user.save!
   end
 end
 
@@ -57,7 +64,7 @@ module DeviseAuthenticationApi
     }
 
     config.after_initialize do
-      INITIALIZE_ADMIN_USER
+      INITIALIZE_ADMIN_USER.call
     end
   end
 end
