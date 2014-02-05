@@ -38,44 +38,6 @@ Time interval in seconds to unlock the account.
 
 *Note: API subject to change*
 
-### Self registration
-
-#### Register user
-
-    POST [host]/users
-
-    # with JSON body:
-
-    { "user": { "email": "joe.bloggs@example.com", "password": "s3kr!tpa55"} }
-
-Success:
-
-    201 Created
-
-    {"email":"joe.bloggs@example.com","confirmation_token":"b614285c-6a10"}
-
-Failure due to invalid parameters:
-
-    422 Unprocessable Entity
-
-    {"errors":{"email":["is invalid"],"password":["can't be blank"]}}
-
-
-#### Confirm registration
-
-    POST [host]/users/confirmation/[confirmation_token]
-
-Success:
-
-    204 No Content
-
-Failure due to invalid parameters:
-
-    422 Unprocessable Entity
-
-    '{"error":"Invalid token."}'
-
-
 ### Admin registration of users
 
 #### Admin user registers user
@@ -131,6 +93,44 @@ Failure due to invalid password:
 
     {"errors":{"password":["is too short (minimum is 8 characters)"]}}
 
+
+
+### Self registration
+
+#### Register user
+
+    POST [host]/users
+
+    # with JSON body:
+
+    { "user": { "email": "joe.bloggs@example.com", "password": "s3kr!tpa55"} }
+
+Success:
+
+    201 Created
+
+    {"email":"joe.bloggs@example.com","confirmation_token":"b614285c-6a10"}
+
+Failure due to invalid parameters:
+
+    422 Unprocessable Entity
+
+    {"errors":{"email":["is invalid"],"password":["can't be blank"]}}
+
+
+#### Confirm registration
+
+    POST [host]/users/confirmation/[confirmation_token]
+
+Success:
+
+    204 No Content
+
+Failure due to invalid parameters:
+
+    401 Unauthorized
+
+    '{"error":"Invalid token."}'
 
 
 ### Sign in user
