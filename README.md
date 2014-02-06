@@ -90,11 +90,17 @@ Success:
 
     {"email":"joe.bloggs@example.com"}
 
-    # and confirmation email is sent to "joe.bloggs@example.com" containing URL with confirmation_token
+    # Confirmation email is sent to "joe.bloggs@example.com" containing URL with confirmation_token.
+    # If SITE_URL=http://url_of_client_service.com, then the confirmation URL in email looks like:
+
+    http://url_of_client_service.com/users/confirmation/Ns5sRA1S7dcoEnm_Uaxt
 
     # if RAILS_ENV == 'test' then confirmation_token is included in response for test purposes
-
-    # e.g. {"email":"joe.bloggs@example.com", confirmation_token_for_tests_only: "Pm2tbZfcwfD7B1jK_wzo"}
+    # e.g.
+    # {
+    #     "email":"joe.bloggs@example.com",
+    #     "confirmation_token_for_tests_only": "Pm2tbZfcwfD7B1jK_wzo"
+    # }
 
 Failure due to invalid admin authentication_token:
 
@@ -135,7 +141,7 @@ Failure due to invalid password:
 
 
 
-### Self registration
+### Self registration (for use by public-facing applications)
 
 #### Register user
 
