@@ -46,11 +46,247 @@
 	<key>Creator</key>
 	<string>David Rogers</string>
 	<key>DisplayScale</key>
-	<string>1 0/72 in = 1 0/72 in</string>
+	<string>1 0/72 in = 1.0000 in</string>
 	<key>GraphDocumentVersion</key>
 	<integer>8</integer>
 	<key>GraphicsList</key>
 	<array>
+		<dict>
+			<key>Bounds</key>
+			<string>{{343.5, 782}, {51, 28}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>FitText</key>
+			<string>YES</string>
+			<key>Flow</key>
+			<string>Resize</string>
+			<key>ID</key>
+			<integer>46</integer>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Pad</key>
+				<integer>0</integer>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+
+\f0\fs24 \cf0 Reinstate\
+account}</string>
+				<key>VerticalPad</key>
+				<integer>0</integer>
+			</dict>
+			<key>Wrap</key>
+			<string>NO</string>
+		</dict>
+		<dict>
+			<key>Class</key>
+			<string>LineGraphic</string>
+			<key>Head</key>
+			<dict>
+				<key>ID</key>
+				<integer>40</integer>
+			</dict>
+			<key>ID</key>
+			<integer>45</integer>
+			<key>Points</key>
+			<array>
+				<string>{406.00085856839081, 765.32254654822941}</string>
+				<string>{375, 777}</string>
+				<string>{332.99887370293175, 763.16433486684809}</string>
+			</array>
+			<key>Style</key>
+			<dict>
+				<key>stroke</key>
+				<dict>
+					<key>HeadArrow</key>
+					<string>FilledArrow</string>
+					<key>Legacy</key>
+					<true/>
+					<key>LineType</key>
+					<integer>1</integer>
+					<key>TailArrow</key>
+					<string>0</string>
+				</dict>
+			</dict>
+			<key>Tail</key>
+			<dict>
+				<key>ID</key>
+				<integer>12</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>Bounds</key>
+			<string>{{435, 340.5}, {72, 70}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>FitText</key>
+			<string>YES</string>
+			<key>Flow</key>
+			<string>Resize</string>
+			<key>ID</key>
+			<integer>44</integer>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Pad</key>
+				<integer>0</integer>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+
+\f0\fs24 \cf0 Activation\
+(using token \
+from email,\
+and supplied \
+password)}</string>
+				<key>VerticalPad</key>
+				<integer>0</integer>
+			</dict>
+			<key>Wrap</key>
+			<string>NO</string>
+		</dict>
+		<dict>
+			<key>Class</key>
+			<string>LineGraphic</string>
+			<key>Head</key>
+			<dict>
+				<key>ID</key>
+				<integer>9</integer>
+			</dict>
+			<key>ID</key>
+			<integer>43</integer>
+			<key>Points</key>
+			<array>
+				<string>{455.66895699269821, 310.33259459503074}</string>
+				<string>{395.68819546225126, 405.23696110015754}</string>
+			</array>
+			<key>Style</key>
+			<dict>
+				<key>stroke</key>
+				<dict>
+					<key>HeadArrow</key>
+					<string>FilledArrow</string>
+					<key>Legacy</key>
+					<true/>
+					<key>TailArrow</key>
+					<string>0</string>
+				</dict>
+			</dict>
+			<key>Tail</key>
+			<dict>
+				<key>ID</key>
+				<integer>42</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>Bounds</key>
+			<string>{{424.5, 170.5}, {146.5, 146.5}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>42</integer>
+			<key>Shape</key>
+			<string>Circle</string>
+			<key>Style</key>
+			<dict>
+				<key>stroke</key>
+				<dict>
+					<key>GapRatio</key>
+					<real>0.5</real>
+					<key>Width</key>
+					<real>11</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+
+\f0\b\fs24 \cf0 Unconfirmed without password\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+
+\b0 \cf0 The account requires email confirmation by the user to begin use. }</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Bounds</key>
+			<string>{{163, 650.5}, {169, 169}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>40</integer>
+			<key>Shape</key>
+			<string>Circle</string>
+			<key>Style</key>
+			<dict>
+				<key>stroke</key>
+				<dict>
+					<key>GapRatio</key>
+					<real>0.5</real>
+					<key>Width</key>
+					<real>11</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+
+\f0\b\fs24 \cf0 Active\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+
+\b0 \cf0 States above apply.}</string>
+			</dict>
+		</dict>
 		<dict>
 			<key>Class</key>
 			<string>LineGraphic</string>
@@ -63,10 +299,10 @@
 			<integer>39</integer>
 			<key>Points</key>
 			<array>
-				<string>{350.15012642162287, 430.48115070203613}</string>
-				<string>{372, 469}</string>
-				<string>{386.5, 450}</string>
-				<string>{360.63843761955104, 422.70168415397058}</string>
+				<string>{351.45430034716287, 502.72478248125816}</string>
+				<string>{339.5, 542.5}</string>
+				<string>{392.5, 541.5}</string>
+				<string>{381.64780006850611, 502.98532965489426}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -90,7 +326,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{386.5, 442}, {52, 56}}</string>
+			<string>{{341, 555.5}, {52, 56}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -145,14 +381,14 @@ via reset)}</string>
 			<key>Head</key>
 			<dict>
 				<key>ID</key>
-				<integer>5</integer>
+				<integer>42</integer>
 			</dict>
 			<key>ID</key>
 			<integer>37</integer>
 			<key>Points</key>
 			<array>
-				<string>{383.63513513513516, 113}</string>
-				<string>{365.98646014950236, 138.67981360269042}</string>
+				<string>{495.24223678270016, 147}</string>
+				<string>{495.69924087624264, 165.02651547228231}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -186,8 +422,8 @@ via reset)}</string>
 			<integer>36</integer>
 			<key>Points</key>
 			<array>
-				<string>{256.87837837837839, 99}</string>
-				<string>{282.33787811850169, 137.78829666289371}</string>
+				<string>{219, 140}</string>
+				<string>{219, 164.99996532532765}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -211,7 +447,7 @@ via reset)}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{181, 43}, {115, 56}}</string>
+			<string>{{161.5, 56}, {115, 84}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -253,14 +489,16 @@ via reset)}</string>
 \f0\b\fs24 \cf0 Self-creation of account\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\b0 \cf0 A user creates their own account}</string>
+\b0 \cf0 A user creates their own account\
+(email and password\
+provided)}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{365, 29}, {95, 84}}</string>
+			<string>{{446.5, 49}, {95, 98}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -302,14 +540,15 @@ via reset)}</string>
 \f0\b\fs24 \cf0 Account created by administrator\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\b0 \cf0 Someone else creates an account on behalf of the user}</string>
+\b0 \cf0 Someone else creates an account on behalf of the user\
+(email provided)}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{178, 314}, {71, 42}}</string>
+			<string>{{207.25, 381.5}, {104, 42}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -348,9 +587,9 @@ via reset)}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs24 \cf0 Administrator\
-unblocks\
-account}</string>
+\f0\fs24 \cf0 User unlocks\
+account using\
+token sent by email}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -359,7 +598,7 @@ account}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{181, 409}, {87, 70}}</string>
+			<string>{{217.25, 473}, {94, 42}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -398,11 +637,9 @@ account}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs24 \cf0 Manual or\
-automatic\
-block of account\
-(e.g. X failed\
-credentials)}</string>
+\f0\fs24 \cf0 Account is locked\
+due to X failed\
+login attempts}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -411,7 +648,7 @@ credentials)}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{280, 484}, {43, 28}}</string>
+			<string>{{343, 689}, {48, 28}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -450,7 +687,7 @@ credentials)}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs24 \cf0 Delete\
+\f0\fs24 \cf0 Suspend\
 account}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
@@ -460,7 +697,7 @@ account}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{254, 278}, {69, 42}}</string>
+			<string>{{295, 304.5}, {69, 42}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -509,177 +746,6 @@ from email)}</string>
 			<string>NO</string>
 		</dict>
 		<dict>
-			<key>Bounds</key>
-			<string>{{415, 314}, {71, 42}}</string>
-			<key>Class</key>
-			<string>ShapedGraphic</string>
-			<key>FitText</key>
-			<string>YES</string>
-			<key>Flow</key>
-			<string>Resize</string>
-			<key>ID</key>
-			<integer>28</integer>
-			<key>Shape</key>
-			<string>Rectangle</string>
-			<key>Style</key>
-			<dict>
-				<key>fill</key>
-				<dict>
-					<key>Draws</key>
-					<string>NO</string>
-				</dict>
-				<key>shadow</key>
-				<dict>
-					<key>Draws</key>
-					<string>NO</string>
-				</dict>
-				<key>stroke</key>
-				<dict>
-					<key>Draws</key>
-					<string>NO</string>
-				</dict>
-			</dict>
-			<key>Text</key>
-			<dict>
-				<key>Pad</key>
-				<integer>0</integer>
-				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
-
-\f0\fs24 \cf0 Administrator\
-'awakens'\
-account}</string>
-				<key>VerticalPad</key>
-				<integer>0</integer>
-			</dict>
-			<key>Wrap</key>
-			<string>NO</string>
-		</dict>
-		<dict>
-			<key>Bounds</key>
-			<string>{{425, 397}, {42, 28}}</string>
-			<key>Class</key>
-			<string>ShapedGraphic</string>
-			<key>FitText</key>
-			<string>YES</string>
-			<key>Flow</key>
-			<string>Resize</string>
-			<key>ID</key>
-			<integer>27</integer>
-			<key>Shape</key>
-			<string>Rectangle</string>
-			<key>Style</key>
-			<dict>
-				<key>fill</key>
-				<dict>
-					<key>Draws</key>
-					<string>NO</string>
-				</dict>
-				<key>shadow</key>
-				<dict>
-					<key>Draws</key>
-					<string>NO</string>
-				</dict>
-				<key>stroke</key>
-				<dict>
-					<key>Draws</key>
-					<string>NO</string>
-				</dict>
-			</dict>
-			<key>Text</key>
-			<dict>
-				<key>Pad</key>
-				<integer>0</integer>
-				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
-
-\f0\fs24 \cf0 Inactive\
-for X}</string>
-				<key>VerticalPad</key>
-				<integer>0</integer>
-			</dict>
-			<key>Wrap</key>
-			<string>NO</string>
-		</dict>
-		<dict>
-			<key>Class</key>
-			<string>LineGraphic</string>
-			<key>Head</key>
-			<dict>
-				<key>ID</key>
-				<integer>10</integer>
-			</dict>
-			<key>ID</key>
-			<integer>23</integer>
-			<key>Points</key>
-			<array>
-				<string>{376.82757092512588, 392.01978943774196}</string>
-				<string>{408, 397}</string>
-				<string>{478.23654661134879, 386.13321354314979}</string>
-			</array>
-			<key>Style</key>
-			<dict>
-				<key>stroke</key>
-				<dict>
-					<key>HeadArrow</key>
-					<string>FilledArrow</string>
-					<key>Legacy</key>
-					<true/>
-					<key>LineType</key>
-					<integer>1</integer>
-					<key>TailArrow</key>
-					<string>0</string>
-				</dict>
-			</dict>
-			<key>Tail</key>
-			<dict>
-				<key>ID</key>
-				<integer>9</integer>
-			</dict>
-		</dict>
-		<dict>
-			<key>Class</key>
-			<string>LineGraphic</string>
-			<key>Head</key>
-			<dict>
-				<key>ID</key>
-				<integer>9</integer>
-			</dict>
-			<key>ID</key>
-			<integer>22</integer>
-			<key>Points</key>
-			<array>
-				<string>{478.30878475703099, 366.40859526246163}</string>
-				<string>{408, 355}</string>
-				<string>{374.67925841350802, 366.23835662976353}</string>
-			</array>
-			<key>Style</key>
-			<dict>
-				<key>stroke</key>
-				<dict>
-					<key>HeadArrow</key>
-					<string>FilledArrow</string>
-					<key>Legacy</key>
-					<true/>
-					<key>LineType</key>
-					<integer>1</integer>
-					<key>TailArrow</key>
-					<string>0</string>
-				</dict>
-			</dict>
-			<key>Tail</key>
-			<dict>
-				<key>ID</key>
-				<integer>10</integer>
-			</dict>
-		</dict>
-		<dict>
 			<key>Class</key>
 			<string>LineGraphic</string>
 			<key>Head</key>
@@ -691,9 +757,9 @@ for X}</string>
 			<integer>21</integer>
 			<key>Points</key>
 			<array>
-				<string>{270.42292869021958, 393.46879004295369}</string>
-				<string>{225, 402}</string>
-				<string>{177.86238112988551, 391.5929932364682}</string>
+				<string>{313.92292869021958, 460.96879004295369}</string>
+				<string>{268.5, 469.5}</string>
+				<string>{204.25456802081737, 457.18226680098377}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -727,9 +793,9 @@ for X}</string>
 			<integer>20</integer>
 			<key>Points</key>
 			<array>
-				<string>{178.48115760526613, 364.56655079402566}</string>
-				<string>{228, 356}</string>
-				<string>{271.59912330191838, 368.55472136966233}</string>
+				<string>{204.72252778030415, 433.56572191546888}</string>
+				<string>{271.5, 423.5}</string>
+				<string>{315.09912330191838, 436.05472136966233}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -763,8 +829,9 @@ for X}</string>
 			<integer>18</integer>
 			<key>Points</key>
 			<array>
-				<string>{323.50001197041274, 437.50002674823389}</string>
-				<string>{323.50001197041274, 530.49995775529851}</string>
+				<string>{336.83650309240886, 724.06083635603159}</string>
+				<string>{370, 720}</string>
+				<string>{401.20002299396845, 724.01717034257103}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -783,7 +850,7 @@ for X}</string>
 			<key>Tail</key>
 			<dict>
 				<key>ID</key>
-				<integer>9</integer>
+				<integer>40</integer>
 			</dict>
 		</dict>
 		<dict>
@@ -798,8 +865,8 @@ for X}</string>
 			<integer>13</integer>
 			<key>Points</key>
 			<array>
-				<string>{323.5000108028492, 275.50003470738926}</string>
-				<string>{323.5000108028492, 329.49997325387568}</string>
+				<string>{262.0932779223694, 301.39776580155996}</string>
+				<string>{336.03591533745004, 406.74859900898576}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -821,7 +888,7 @@ for X}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{239, 532}, {169, 169}}</string>
+			<string>{{402, 650.5}, {169, 169}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -844,14 +911,15 @@ for X}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\b\fs24 \cf0 Deleted\
+\f0\b\fs24 \cf0 Suspended\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\b0 The account is deleted. Some account data may remain for audit purposes, but the account cannot be recovered. The user ID can be reused?}</string>
+\b0 \cf0 The account is suspended. It cannot be used to authenticate}</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{40, 307}, {139, 139}}</string>
+			<string>{{66, 374.5}, {139, 139}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -868,38 +936,15 @@ for X}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\b\fs24 \cf0 Blocked\
-
-\b0 The account was manually or automatically blocked to prevent access due to an emergent risk}</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Bounds</key>
-			<string>{{478, 314}, {125, 125}}</string>
-			<key>Class</key>
-			<string>ShapedGraphic</string>
-			<key>ID</key>
-			<integer>10</integer>
-			<key>Shape</key>
-			<string>Circle</string>
-			<key>Style</key>
-			<dict/>
-			<key>Text</key>
-			<dict>
-				<key>Text</key>
-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
-\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
+\f0\b\fs24 \cf0 Locked\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\b\fs24 \cf0 Dormant\
-
-\b0 The account was inactive for a configurable period of X, and was marked as dormant}</string>
+\b0 \cf0 The account was manually or automatically locked to prevent access due to an emergent risk}</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{270, 330}, {107, 107}}</string>
+			<string>{{313.5, 397.5}, {107, 107}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -916,14 +961,15 @@ for X}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\b\fs24 \cf0 Active\
+\f0\b\fs24 \cf0 Confirmed\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\b0 The only allowable state for signed-in users}</string>
+\b0 \cf0 The only allowable state for authenticatedusers}</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{254, 131}, {139, 139}}</string>
+			<string>{{149.5, 170.5}, {139, 139}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -948,9 +994,10 @@ for X}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\b\fs24 \cf0 Inactive\
+\f0\b\fs24 \cf0 Unconfirmed\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\b0 The account requires activation by the user to begin use. This  is used to verify the email address.}</string>
+\b0 \cf0 The account requires email confirmation by the user to begin use. }</string>
 			</dict>
 		</dict>
 	</array>
@@ -1001,7 +1048,7 @@ for X}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2013-12-17 11:45:21 +0000</string>
+	<string>2014-02-06 10:55:31 +0000</string>
 	<key>Modifier</key>
 	<string>David Rogers</string>
 	<key>NotesVisible</key>
@@ -1097,7 +1144,7 @@ for X}</string>
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{373, 4}, {693, 874}}</string>
+		<string>{{165, 4}, {1030, 874}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
@@ -1111,7 +1158,7 @@ for X}</string>
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{0, 0}, {544, 720}}</string>
+		<string>{{-37, 94}, {881, 735}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>
