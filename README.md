@@ -179,6 +179,7 @@ Failure due to invalid parameters:
     '{"error":"Invalid token."}'
 
 
+
 ### Sign in user
 
     POST [host]/sessions
@@ -204,6 +205,35 @@ Failure after > MAXIMUM_ATTEMPTS failed attempts results in locked account:
     401 Unauthorized
 
     {"error":"Your account is locked."}
+
+
+
+### Unlock locked user account
+
+After > MAXIMUM_ATTEMPTS failed attempts at signin due to incorrect password being supplied,
+user account is locked.
+
+An unlock email is sent to the user with a URL containing an unlock_token.
+
+If SITE_URL=http://url_of_client_service.com, then the unlock URL in email looks like:
+
+    http://url_of_client_service.com/users/unlock/Ns5sRA1S7dcoEnm_Uaxt
+
+To unlock via API
+
+    POST [host]/users/unlock/:unlock_token
+
+Success:
+
+    204 No Content
+
+Failure due to invalid token:
+
+    401 Unauthorized
+
+    '{"error":"Invalid token."}'
+
+
 
 
 ### Verify user token
