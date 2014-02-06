@@ -1,5 +1,5 @@
 DeviseAuthenticationApi::Application.routes.draw do
-  devise_for :users, defaults: {format: :json}, skip: [:sessions, :passwords, :confirmations, :registrations]
+  devise_for :users, defaults: {format: :json}, skip: [:sessions, :passwords, :confirmations, :registrations, :unlock]
 
   as :user do
     # registration
@@ -10,6 +10,9 @@ DeviseAuthenticationApi::Application.routes.draw do
 
     # admin registration of user
     post '/admin/:authentication_token/users' => 'admin/registrations#create', defaults: {format: :json}
+
+    # unlock locked account
+    post '/users/unlock/:unlock_token' => 'unlocks#create', as: 'user_unlock', defaults: {format: :json}
   end
 
   # registration confirmation

@@ -70,6 +70,7 @@ describe 'sign in via POST /sessions' do
 
     describe 'after MAXIMUM_ATTEMPTS + 1 failed attempts' do
       before do
+        ActionMailer::Base.deliveries.clear
         attempts = ENV['MAXIMUM_ATTEMPTS'].to_i
         attempts.times do |i|
           sign_in @bad_password_creds
@@ -90,6 +91,16 @@ describe 'sign in via POST /sessions' do
 
         it 'has account is locked error JSON' do
           json_contains 'error', 'Your account is locked.'
+        end
+
+        it 'sends email to user' do
+          ActionMailer::Base.deliveries.count.should == 1
+          message = ActionMailer::Base.deliveries.first
+
+          message.to.should == [@email]
+          message.from.should == [ENV['SENDER_EMAIL_ADDRESS']]
+          message.subject.should == 'Unlock Instructions'
+          message.body.raw_source.should include('http://testhost/users/unlock/')
         end
       end
     end
