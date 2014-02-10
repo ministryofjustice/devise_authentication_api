@@ -30,6 +30,19 @@ describe 'unlock account via POST /users/unlock/:unlock_token' do
       end
     end
 
+    context 'suspended user' do
+      describe 'failure' do
+        before do
+          user = user(@email)
+          user.suspended = true
+          user.save
+          post "/users/unlock/#{@token}"
+        end
+
+        it_behaves_like 'account suspended response'
+      end
+    end
+
     describe 'failure due to second call with same token' do
       before do
         post "/users/unlock/#{@token}"

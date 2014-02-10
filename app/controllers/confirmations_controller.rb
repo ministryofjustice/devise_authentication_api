@@ -6,12 +6,12 @@ class ConfirmationsController < ApplicationController
     token = params[:confirmation_token]
     user = User.confirm_by_token(token)
 
-    if user.suspended?
+    if user.try(:suspended?)
       render_unauthorized user.inactive_message
-    elsif user.errors.empty?
+    elsif user.try(:valid?)
       render_success
     else
-      render text: '{"error":"Invalid token."}', status: :unauthorized
+      render_unauthorized
     end
   end
 

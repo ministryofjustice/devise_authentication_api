@@ -22,7 +22,7 @@ describe 'confirmation via POST /users/confirmation/:confirmation_token' do
   end
 
   context 'by suspended user' do
-    describe 'success' do
+    describe 'failure' do
       before do
         register @good_creds
         user = user(@email)
