@@ -143,6 +143,10 @@ class User
     super unless suspended?
   end
 
+  def unlock_access!
+    super unless suspended?
+  end
+
   private
 
   def is_new_record?

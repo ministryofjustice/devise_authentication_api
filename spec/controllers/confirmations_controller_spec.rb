@@ -25,9 +25,9 @@ describe 'confirmation via POST /users/confirmation/:confirmation_token' do
     before do
       register @good_creds
       @confirmation_token = JSON.parse(last_response.body)['confirmation_token']
-      user = user(@email)
-      user.suspended = true
-      user.save
+      @user = user(@email)
+      @user.suspended = true
+      @user.save
     end
 
     describe 'failure' do
@@ -44,9 +44,8 @@ describe 'confirmation via POST /users/confirmation/:confirmation_token' do
 
     context 'that is reinstated' do
       before do
-        user = user(@email)
-        user.suspended = false
-        user.save
+        @user.suspended = false
+        @user.save
         post "/users/confirmation/#{@confirmation_token}"
       end
 
