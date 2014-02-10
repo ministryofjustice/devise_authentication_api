@@ -92,6 +92,16 @@ class User
     !suspended_at.blank?
   end
 
+  def suspended= suspended
+    set_true = suspended.to_s.downcase[/^true$/].present?
+
+    if set_true
+      self.suspended_at = Time.now if suspended_at.blank?
+    else
+      self.suspended_at = nil
+    end
+  end
+
   def as_json options
     fields = old_as_json.except('_id').except('is_admin_user').except('suspended_at')
 

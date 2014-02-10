@@ -322,7 +322,7 @@ Failure due to invalid token:
 
 ### Admin sets user's suspended status
 
-    POST [host]/admin/[admin_authentication_token]/users
+    PATCH [host]/admin/[admin_authentication_token]/users
 
     # with JSON body
 
