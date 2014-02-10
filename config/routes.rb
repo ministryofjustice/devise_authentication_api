@@ -1,6 +1,9 @@
 DeviseAuthenticationApi::Application.routes.draw do
   devise_for :users, defaults: {format: :json}, skip: [:sessions, :passwords, :confirmations, :registrations, :unlock]
 
+  # admin view user
+  get    'admin/:authentication_token/users' => 'admin/users#show', defaults: {format: :json}
+
   as :user do
     # registration
     post '/users' => 'registrations#create', as: 'user_registration', defaults: {format: :json}
@@ -29,6 +32,7 @@ DeviseAuthenticationApi::Application.routes.draw do
 
   # session deletion
   delete 'sessions/:authentication_token' => 'sessions#destroy', defaults: {format: :json}
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

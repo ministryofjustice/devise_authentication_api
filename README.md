@@ -78,7 +78,7 @@ If using sendgrid for email, these environment variables are used in config/envi
 
 #### Admin user registers user
 
-    POST [host]/admin/:admin_authentication_token/users
+    POST [host]/admin/[admin_authentication_token]/users
 
     # with JSON body:
 
@@ -292,6 +292,27 @@ Success:
 Failure due to invalid token:
 
     401 Unauthorized
+
+
+
+### Admin views user suspension status
+
+    GET [host]/admin/[admin_authentication_token]/users?email=[email]
+
+Success:
+
+    200 OK
+
+    {"email":"joe.bloggs@example.com","suspended":"true"}
+
+    {"email":"joe.bloggs@example.com","suspended":"false"}
+
+Failure due to invalid token:
+
+    401 Unauthorized
+
+    '{"error":"Invalid token."}'
+
 
 
 ## High level design (proposed - not all implemented yet)
