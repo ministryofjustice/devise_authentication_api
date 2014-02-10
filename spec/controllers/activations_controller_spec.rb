@@ -73,4 +73,38 @@ describe 'activation via POST /users/activation/:confirmation_token' do
       end
     end
   end
+
+  context 'by suspended user' do
+    before do
+      @user = user(@email)
+      @user.suspended = true
+      @user.save
+    end
+
+    describe 'failure' do
+      before do
+        post("/users/activation/#{@confirmation_token}", @password_params)
+      end
+
+      it_behaves_like 'account suspended response'
+
+      it 'has not confirmed user' do
+        user(@email).confirmed?.should be_false
+      end
+    end
+
+    context 'that is reinstated' do
+      before do
+        @user.suspended = false
+        @user.save
+        post("/users/activation/#{@confirmation_token}", @password_params)
+      end
+
+      it_behaves_like 'no content success response'
+
+      it 'has confirmed user' do
+        user(@email).confirmed?.should be_true
+      end
+    end
+  end
 end

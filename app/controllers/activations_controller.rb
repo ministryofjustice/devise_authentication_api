@@ -10,9 +10,13 @@ class ActivationsController < ApplicationController
       render_errors({"password"=>["can't be blank"]}.to_json)
 
     elsif (@user = User.for_confirmation_token(token))
-      setter = PasswordSetter.new(@user)
-      setter.set_password new_password, self
 
+      if @user.try(:suspended?)
+        render_unauthorized @user.inactive_message
+      else
+        setter = PasswordSetter.new(@user)
+        setter.set_password new_password, self
+      end
     else
       render_unauthorized
     end
