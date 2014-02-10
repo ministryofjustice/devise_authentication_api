@@ -37,3 +37,13 @@ shared_examples 'no content success response' do
     last_response.body.should == ''
   end
 end
+
+shared_examples 'account suspended response' do
+  it 'returns 401 status' do
+    status_code_is 401
+  end
+
+  it 'returns error message' do
+    json_contains 'error', 'Your account is suspended.'
+  end
+end

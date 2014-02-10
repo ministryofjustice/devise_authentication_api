@@ -21,6 +21,21 @@ describe 'confirmation via POST /users/confirmation/:confirmation_token' do
     end
   end
 
+  context 'by suspended user' do
+    describe 'success' do
+      before do
+        register @good_creds
+        user = user(@email)
+        user.suspended = true
+        user.save
+        confirmation_token = JSON.parse(last_response.body)['confirmation_token']
+        post "/users/confirmation/#{confirmation_token}"
+      end
+
+      it_behaves_like 'account suspended response'
+    end
+  end
+
   context 'by already confirmed user' do
     describe 'failure' do
       before do
@@ -55,4 +70,5 @@ describe 'confirmation via POST /users/confirmation/:confirmation_token' do
       end
     end
   end
+
 end

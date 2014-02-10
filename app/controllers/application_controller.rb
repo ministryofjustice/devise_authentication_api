@@ -40,8 +40,8 @@ class ApplicationController < ActionController::API
     render text: "{\"errors\":#{errors}}", status: :unprocessable_entity
   end
 
-  def render_unauthorized
-    render text: '{"error":"Invalid token."}', status: :unauthorized
+  def render_unauthorized error='Invalid token.'
+    render text: "{\"error\":\"#{error}\"}", status: :unauthorized
   end
 
 end

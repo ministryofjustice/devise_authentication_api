@@ -75,13 +75,7 @@ describe '' do
           sign_in @good_creds
         end
 
-        it 'returns 401 status' do
-          status_code_is 401
-        end
-
-        it 'returns error message' do
-          json_contains 'error', 'Your account is suspended.'
-        end
+        it_behaves_like 'account suspended response'
       end
 
     end
