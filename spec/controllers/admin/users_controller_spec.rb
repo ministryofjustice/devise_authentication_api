@@ -70,14 +70,15 @@ describe '' do
       end
     end
 
-      # describe 'and success re-instating' do
-        # before { patch "/admin/#{@admin_token}/users", @user_reinstated_params}
-        # it_behaves_like 'no content success response'
-#
-        # it 'sets user suspended status false' do
-          # user(@email).suspended?.should be_false
-        # end
-      # end
+    describe 'and success re-instating' do
+      before { patch "/admin/#{@admin_token}/users", @user_reinstated_params}
+
+      it_behaves_like 'no content success response'
+
+      it 'sets user suspended status false' do
+        user(@email).suspended?.should be_false
+      end
+    end
 
     describe 'failure due to invalid user email' do
       before { patch "/admin/#{@admin_token}/users", @bad_user_suspended_params }
