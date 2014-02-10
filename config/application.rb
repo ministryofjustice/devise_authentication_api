@@ -74,5 +74,8 @@ module DeviseAuthenticationApi
     config.after_initialize do
       INITIALIZE_ADMIN_USER.call
     end
+
+    # config.middleware.use Rack::ToBeDecided
+
   end
 end

@@ -206,6 +206,11 @@ Failure after > MAXIMUM_ATTEMPTS failed attempts results in locked account:
 
     {"error":"Your account is locked."}
 
+Failure if account suspended:
+
+    401 Unauthorized
+
+    {"error":"Your account is suspended."}
 
 
 ### Unlock locked user account

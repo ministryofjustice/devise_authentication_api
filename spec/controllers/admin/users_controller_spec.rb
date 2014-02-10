@@ -58,6 +58,7 @@ describe '' do
       @user_suspended_params = {user: {email: @email, suspended: 'true'}}
       @user_reinstated_params = {user: {email: @email, suspended: 'false'}}
       @bad_user_suspended_params = {user: {email: 'bad@example.com', suspended: 'true'}}
+      user(@email).confirm!
     end
 
     describe 'success setting suspended' do
@@ -68,6 +69,21 @@ describe '' do
       it 'sets user suspended status true' do
         user(@email).suspended?.should be_true
       end
+
+      describe 'and subsequent sign in fails' do
+        before do
+          sign_in @good_creds
+        end
+
+        it 'returns 401 status' do
+          status_code_is 401
+        end
+
+        it 'returns error message' do
+          json_contains 'error', 'Your account is suspended.'
+        end
+      end
+
     end
 
     describe 'and success re-instating' do
