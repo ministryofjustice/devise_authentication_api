@@ -139,6 +139,10 @@ class User
     end
   end
 
+  def confirm!
+    super unless suspended?
+  end
+
   private
 
   def is_new_record?
