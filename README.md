@@ -297,7 +297,7 @@ Failure due to invalid token:
 
 ### Admin views user suspension status
 
-    GET [host]/admin/[admin_authentication_token]/users/[email]
+    GET [host]/admin/[admin_authentication_token]/users?email=[email]
 
 Success:
 
