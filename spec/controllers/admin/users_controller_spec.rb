@@ -32,5 +32,17 @@ describe 'get user via GET /admin/:authentication_token/users/:email' do
       end
     end
 
+    describe 'failure due to invalid user email' do
+      before { get "/admin/#{@admin_token}/users?email=wrong@example.com" }
+
+      it 'returns 422 status code' do
+        status_code_is 422
+      end
+
+      it 'returns error message' do
+        json_contains 'error', 'No user found for email.'
+      end
+    end
+
   end
 end

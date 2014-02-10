@@ -10,6 +10,8 @@ class Admin::UsersController < ApplicationController
     email = params[:email]
     if user = User.for_email(email)
       render json: user.as_json(admin: true)
+    else
+      render_error 'No user found for email.'
     end
   end
 

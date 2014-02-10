@@ -295,7 +295,7 @@ Failure due to invalid token:
 
 
 
-### Admin views user suspension status
+### Admin views user's suspended status
 
     GET [host]/admin/[admin_authentication_token]/users?email=[email]
 
@@ -306,6 +306,37 @@ Success:
     {"email":"joe.bloggs@example.com","suspended":"true"}
 
     {"email":"joe.bloggs@example.com","suspended":"false"}
+
+Failure due to invalid user:
+
+    422 Unprocessable Entity
+
+    {"error":"no user found for email"}
+
+Failure due to invalid token:
+
+    401 Unauthorized
+
+    '{"error":"Invalid token."}'
+
+
+### Admin sets user's suspended status
+
+    POST [host]/admin/[admin_authentication_token]/users
+
+    # with JSON body
+
+    {"email":"joe.bloggs@example.com","suspended":"true"}
+
+Success:
+
+    204 No Content
+
+Failure due to invalid user:
+
+    422 Unprocessable Entity
+
+    {"error":"No user found for email."}
 
 Failure due to invalid token:
 
