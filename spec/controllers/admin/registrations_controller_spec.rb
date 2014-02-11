@@ -27,7 +27,8 @@ describe 'registration of user via POST /admin/:token/users' do
   context 'by admin user' do
     before do
       INITIALIZE_ADMIN_USER.call
-      @admin_token = User.last.authentication_token
+      @admin_user = User.last
+      @admin_token = @admin_user.authentication_token
     end
 
     describe 'success' do
@@ -87,8 +88,25 @@ describe 'registration of user via POST /admin/:token/users' do
       end
     end
 
+    describe 'failure due to suspended admin user' do
+      before do
+        @admin_user.suspended = true
+        @admin_user.save
+
+        ActionMailer::Base.deliveries.clear
+        post("/admin/#{@admin_token}/users", @user_params)
+      end
+
+      it_behaves_like 'account suspended response'
+
+      it 'does not send confirmation email' do
+        ActionMailer::Base.deliveries.should be_empty
+      end
+    end
+
     describe 'failure due to bad email' do
       before do
+        ActionMailer::Base.deliveries.clear
         post("/admin/#{@admin_token}/users", {user: {email: 'bademail'} } )
       end
 
@@ -98,6 +116,10 @@ describe 'registration of user via POST /admin/:token/users' do
 
       it 'returns errors in JSON' do
         json_contains 'errors', {"email"=>["is invalid"]}
+      end
+
+      it 'does not send confirmation email' do
+        ActionMailer::Base.deliveries.should be_empty
       end
     end
 
