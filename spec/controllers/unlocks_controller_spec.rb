@@ -30,6 +30,40 @@ describe 'unlock account via POST /users/unlock/:unlock_token' do
       end
     end
 
+    context 'suspended user' do
+      before do
+        @user = user(@email)
+        @user.suspended = true
+        @user.save
+      end
+
+      describe 'failure' do
+        before do
+          post "/users/unlock/#{@token}"
+        end
+
+        it_behaves_like 'account suspended response'
+
+        it 'does not unlock user' do
+          user(@email).access_locked?.should be_true
+        end
+      end
+
+      context 'that is reinstated' do
+        before do
+          @user.suspended = false
+          @user.save
+          post "/users/unlock/#{@token}"
+        end
+
+        it_behaves_like 'no content success response'
+
+        it 'unlocks user' do
+          user(@email).access_locked?.should be_false
+        end
+      end
+    end
+
     describe 'failure due to second call with same token' do
       before do
         post "/users/unlock/#{@token}"

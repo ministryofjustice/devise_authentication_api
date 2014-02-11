@@ -18,7 +18,7 @@ module ApiHelper
   end
 
   def status_code_is code
-    last_response.status.should eq code
+    last_response.status.should == code
   end
 
   def register_and_confirm credentials

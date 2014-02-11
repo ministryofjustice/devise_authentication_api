@@ -85,8 +85,8 @@ describe 'sign in via POST /sessions' do
       context 'sign in attempt with good password' do
         before { sign_in @good_creds }
 
-        it 'returns 401 Unauthorized status code' do
-          status_code_is 401
+        it 'returns 403 Forbidden status code' do
+          status_code_is 403
         end
 
         it 'has account is locked error JSON' do

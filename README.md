@@ -114,6 +114,12 @@ Failure due to invalid email:
 
     {"errors":{"email":["is invalid"]}}
 
+Failure due to admin account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
+
 
 #### Activate registration
 
@@ -138,6 +144,12 @@ Failure due to invalid password:
     422 Unprocessable Entity
 
     {"errors":{"password":["is too short (minimum is 8 characters)"]}}
+
+Failure due to user account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
 
 
 
@@ -178,6 +190,12 @@ Failure due to invalid parameters:
 
     '{"error":"Invalid token."}'
 
+Failure due to user account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
+
 
 
 ### Sign in user
@@ -202,10 +220,15 @@ Failure due to invalid credential(s):
 
 Failure after > MAXIMUM_ATTEMPTS failed attempts results in locked account:
 
-    401 Unauthorized
+    403 Forbidden
 
     {"error":"Your account is locked."}
 
+Failure due to user account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
 
 
 ### Unlock locked user account
@@ -233,6 +256,11 @@ Failure due to invalid token:
 
     '{"error":"Invalid token."}'
 
+Failure due to user account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
 
 
 
@@ -251,6 +279,12 @@ Success:
 Failure due to invalid token:
 
     401 Unauthorized
+
+Failure due to user account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
 
 
 
@@ -278,6 +312,11 @@ Failure due to invalid password:
 
     {"errors":{"password":["is too short (minimum is 8 characters)"]}}
 
+Failure due to user account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
 
 
 
@@ -293,9 +332,20 @@ Failure due to invalid token:
 
     401 Unauthorized
 
+Failure due to user account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
+
+Failure due to user account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
 
 
-### Admin views user suspension status
+### Admin views user's suspended status
 
     GET [host]/admin/[admin_authentication_token]/users?email=[email]
 
@@ -307,11 +357,56 @@ Success:
 
     {"email":"joe.bloggs@example.com","suspended":"false"}
 
+Failure due to invalid user:
+
+    422 Unprocessable Entity
+
+    {"error":"no user found for email"}
+
 Failure due to invalid token:
 
     401 Unauthorized
 
     '{"error":"Invalid token."}'
+
+Failure due to admin account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
+
+
+
+### Admin sets user's suspended status
+
+    PATCH [host]/admin/[admin_authentication_token]/users
+
+    # with JSON body
+
+    {"email":"joe.bloggs@example.com","suspended":"true"}
+
+Success:
+
+    204 No Content
+
+Failure due to invalid user:
+
+    422 Unprocessable Entity
+
+    {"error":"No user found for email."}
+
+Failure due to invalid token:
+
+    401 Unauthorized
+
+    '{"error":"Invalid token."}'
+
+Failure due to admin account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
+
 
 
 

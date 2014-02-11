@@ -7,8 +7,8 @@ describe 'change password via PATCH /users/:authentication_token' do
 
   context 'authenticated user' do
     before do
-      user = User.create! @good_creds[:user]
-      @token = user.authentication_token
+      @user = User.create! @good_creds[:user]
+      @token = @user.authentication_token
     end
 
     describe 'success' do
@@ -18,6 +18,21 @@ describe 'change password via PATCH /users/:authentication_token' do
 
       it 'changes user password' do
         User.last.valid_password?(@new_password)
+      end
+    end
+
+    describe 'failure due to suspended user' do
+      before do
+        @user.suspended = true
+        @user.save!
+        patch "/users/#{@token}", @new_password_params
+      end
+
+      it_behaves_like 'account suspended response'
+
+      it 'does not change user password' do
+        User.last.valid_password?(@new_password).should be_false
+        User.last.valid_password?(@password).should be_true
       end
     end
 

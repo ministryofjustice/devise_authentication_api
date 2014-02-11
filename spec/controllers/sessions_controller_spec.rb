@@ -7,8 +7,8 @@ describe 'sign out via DELETE /sessions/[token]' do
 
   context 'authenticated user' do
     before do
-      user = User.create! @good_creds[:user]
-      @token = user.authentication_token
+      @user = User.create! @good_creds[:user]
+      @token = @user.authentication_token
     end
 
     before { sign_in @good_creds }
@@ -27,6 +27,16 @@ describe 'sign out via DELETE /sessions/[token]' do
       before { delete "/sessions/bad_token" }
 
       it_behaves_like 'unauthorized with invalid token error'
+    end
+
+    describe 'failure due to suspended user' do
+      before do
+        @user.suspended = true
+        @user.save
+        delete "/sessions/#{@token}"
+      end
+
+      it_behaves_like 'account suspended response'
     end
   end
 

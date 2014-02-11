@@ -86,11 +86,29 @@ class User
     end
   end
 
-  alias :old_as_json :as_json
-
   def suspended?
     !suspended_at.blank?
   end
+
+  def active_for_authentication?
+    super && !suspended?
+  end
+
+  def inactive_message
+    suspended? ? 'Your account is suspended.' : super
+  end
+
+  def suspended= suspended
+    set_true = suspended.to_s.downcase[/^true$/].present?
+
+    if set_true
+      self.suspended_at = Time.now if suspended_at.blank?
+    else
+      self.suspended_at = nil
+    end
+  end
+
+  alias :old_as_json :as_json
 
   def as_json options
     fields = old_as_json.except('_id').except('is_admin_user').except('suspended_at')
@@ -119,6 +137,14 @@ class User
     else
       !password.nil? || !password_confirmation.nil? # password is required if it is being set
     end
+  end
+
+  def confirm!
+    super unless suspended?
+  end
+
+  def unlock_access!
+    super unless suspended?
   end
 
   private
