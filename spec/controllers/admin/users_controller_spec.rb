@@ -7,7 +7,8 @@ describe '' do
 
   before do
     INITIALIZE_ADMIN_USER.call
-    @admin_token = User.last.authentication_token
+    @admin_user = User.last
+    @admin_token = @admin_user.authentication_token
     user = User.create! @good_creds[:user]
   end
 
@@ -31,6 +32,17 @@ describe '' do
       it 'does not return authentication_token in JSON' do
         json_should_not_contain 'authentication_token'
       end
+    end
+
+    describe 'failure due to suspended admin user' do
+      before do
+        @admin_user.suspended = true
+        @admin_user.save
+
+        get "/admin/#{@admin_token}/users?email=#{@email}"
+      end
+
+      it_behaves_like 'account suspended response'
     end
 
     describe 'failure due to invalid user email' do
@@ -88,6 +100,17 @@ describe '' do
       it 'sets user suspended status false' do
         user(@email).suspended?.should be_false
       end
+    end
+
+    describe 'failure due to suspended admin user' do
+      before do
+        @admin_user.suspended = true
+        @admin_user.save
+
+        patch "/admin/#{@admin_token}/users", @user_suspended_params
+      end
+
+      it_behaves_like 'account suspended response'
     end
 
     describe 'failure due to invalid user email' do
