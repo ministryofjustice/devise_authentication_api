@@ -257,6 +257,12 @@ Failure due to invalid token:
 
     401 Unauthorized
 
+Failure if account suspended:
+
+    401 Unauthorized
+
+    {"error":"Your account is suspended."}
+
 
 
 ### User change password
@@ -297,6 +303,12 @@ Success:
 Failure due to invalid token:
 
     401 Unauthorized
+
+Failure if account suspended:
+
+    401 Unauthorized
+
+    {"error":"Your account is suspended."}
 
 
 
