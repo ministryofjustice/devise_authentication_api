@@ -5,9 +5,13 @@ class SessionsController < ApplicationController
   def destroy
     token = params[:authentication_token]
     if user = User.for_authentication_token(token)
-      user.authentication_token = nil
-      user.save!
-      render_success
+      if user.suspended?
+        render_unauthorized user.inactive_message
+      else
+        user.authentication_token = nil
+        user.save!
+        render_success
+      end
     else
       render_unauthorized
     end
