@@ -34,7 +34,15 @@ INITIALIZE_ADMIN_USER = Proc.new do
       end
       admin_user.password = ENV['TEST_INITIAL_ADMIN_PASSWORD']
     end
+
     admin_user.save!
+  end
+
+  if Rails.env.test? || Rails.env.development?
+    if User.where(email: ENV['INITIAL_ADMIN_USER_EMAIL']).exists?
+      admin_user = User.find_by(email: ENV['INITIAL_ADMIN_USER_EMAIL'])
+      admin_user.confirm! unless admin_user.confirmed?
+    end
   end
 end
 
