@@ -57,6 +57,10 @@ describe 'registration of user via POST /admin/:token/users' do
         json_contains 'email', @email
       end
 
+      it 'returns confirmation_token_for_tests_only in JSON' do
+        json_includes 'confirmation_token_for_tests_only'
+      end
+
       it 'does not return _id in JSON' do
         json_should_not_contain '_id'
       end
@@ -111,11 +115,30 @@ describe 'registration of user via POST /admin/:token/users' do
       end
 
       it 'returns 422 Unprocessable Entity status code' do
-        status_code_is 422 # Unprocessable Entity
+        status_code_is 422
       end
 
       it 'returns errors in JSON' do
         json_contains 'errors', {"email"=>["is invalid"]}
+      end
+
+      it 'does not send confirmation email' do
+        ActionMailer::Base.deliveries.should be_empty
+      end
+    end
+
+    describe 'failure due to password being provided' do
+      before do
+        ActionMailer::Base.deliveries.clear
+        post("/admin/#{@admin_token}/users", {user: {email: @email, password: 'test1234'} } )
+      end
+
+      it 'returns 422 Unprocessable Entity status code' do
+        status_code_is 422
+      end
+
+      it 'returns errors in JSON' do
+        json_contains 'errors', {"password"=>["should not be provided"]}
       end
 
       it 'does not send confirmation email' do
