@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     token = params[:authentication_token]
     if user = User.for_authentication_token(token)
       if user.suspended?
-        render_unauthorized user.inactive_message
+        render_forbidden user.inactive_message
       else
         user.authentication_token = nil
         user.save!

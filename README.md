@@ -114,6 +114,12 @@ Failure due to invalid email:
 
     {"errors":{"email":["is invalid"]}}
 
+Failure due to admin account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
+
 
 #### Activate registration
 
@@ -138,6 +144,12 @@ Failure due to invalid password:
     422 Unprocessable Entity
 
     {"errors":{"password":["is too short (minimum is 8 characters)"]}}
+
+Failure due to user account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
 
 
 
@@ -178,6 +190,12 @@ Failure due to invalid parameters:
 
     '{"error":"Invalid token."}'
 
+Failure due to user account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
+
 
 
 ### Sign in user
@@ -202,13 +220,13 @@ Failure due to invalid credential(s):
 
 Failure after > MAXIMUM_ATTEMPTS failed attempts results in locked account:
 
-    401 Unauthorized
+    403 Forbidden
 
     {"error":"Your account is locked."}
 
-Failure if account suspended:
+Failure due to user account suspended:
 
-    401 Unauthorized
+    403 Forbidden
 
     {"error":"Your account is suspended."}
 
@@ -238,6 +256,11 @@ Failure due to invalid token:
 
     '{"error":"Invalid token."}'
 
+Failure due to user account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
 
 
 
@@ -257,9 +280,9 @@ Failure due to invalid token:
 
     401 Unauthorized
 
-Failure if account suspended:
+Failure due to user account suspended:
 
-    401 Unauthorized
+    403 Forbidden
 
     {"error":"Your account is suspended."}
 
@@ -289,6 +312,11 @@ Failure due to invalid password:
 
     {"errors":{"password":["is too short (minimum is 8 characters)"]}}
 
+Failure due to user account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
 
 
 
@@ -304,12 +332,17 @@ Failure due to invalid token:
 
     401 Unauthorized
 
-Failure if account suspended:
+Failure due to user account suspended:
 
-    401 Unauthorized
+    403 Forbidden
 
     {"error":"Your account is suspended."}
 
+Failure due to user account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
 
 
 ### Admin views user's suspended status
@@ -336,6 +369,13 @@ Failure due to invalid token:
 
     '{"error":"Invalid token."}'
 
+Failure due to admin account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
+
+
 
 ### Admin sets user's suspended status
 
@@ -360,6 +400,13 @@ Failure due to invalid token:
     401 Unauthorized
 
     '{"error":"Invalid token."}'
+
+Failure due to admin account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
+
 
 
 

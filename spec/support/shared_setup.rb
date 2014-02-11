@@ -39,8 +39,8 @@ shared_examples 'no content success response' do
 end
 
 shared_examples 'account suspended response' do
-  it 'returns 401 status' do
-    status_code_is 401
+  it 'returns 403 status' do
+    status_code_is 403
   end
 
   it 'returns error message' do

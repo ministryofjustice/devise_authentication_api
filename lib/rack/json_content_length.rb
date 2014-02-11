@@ -20,8 +20,8 @@ module Rack
          headers['Content-Type'][/application\/json/]
 
         obody = body
-        body, length = [], 0
-        obody.each { |part| body << part; length += bytesize(part) }
+        new_body, length = [], 0
+        obody.each { |part| new_body << part; length += bytesize(part) }
         obody.close if obody.respond_to?(:close)
 
         headers['Content-Length'] = length.to_s

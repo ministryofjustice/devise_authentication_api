@@ -6,7 +6,7 @@ class TokensController < ApplicationController
     token = params[:authentication_token]
     if (user = User.for_authentication_token(token)) && Devise.secure_compare(user.authentication_token, token)
       if user.suspended?
-        render_unauthorized user.inactive_message
+        render_forbidden user.inactive_message
       else
         response.headers["X-USER-ID"]=user.email
         render text: ''

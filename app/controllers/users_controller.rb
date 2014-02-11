@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       render_errors({"password"=>["can't be blank"]}.to_json)
     elsif (user = User.for_authentication_token(token))
       if user.suspended?
-        render_unauthorized user.inactive_message
+        render_forbidden user.inactive_message
       else
         setter = PasswordSetter.new(user)
         setter.set_password new_password, self

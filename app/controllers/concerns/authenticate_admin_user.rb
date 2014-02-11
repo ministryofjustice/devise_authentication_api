@@ -7,7 +7,7 @@ module AuthenticateAdminUser
 
     if (user = User.for_authentication_token(token)) && user.is_admin_user
       if user.suspended?
-        render_unauthorized user.inactive_message
+        render_forbidden user.inactive_message
       else
         # ok
       end

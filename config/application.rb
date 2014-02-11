@@ -13,23 +13,23 @@ Bundler.require(:default, Rails.env)
 
 puts "==== RAILS_ENV: #{ENV['RAILS_ENV']}"
 
-if ENV['SENDER_EMAIL_ADDRESS'].blank?
+if ENV['SENDER_EMAIL_ADDRESS'].blank? && !Rails.env.development?
   raise 'you must set SENDER_EMAIL_ADDRESS environment variable'
 end
 
 
 INITIALIZE_ADMIN_USER = Proc.new do
-  if ENV['INITIAL_ADMIN_USER_EMAIL'].blank?
+  if ENV['INITIAL_ADMIN_USER_EMAIL'].blank? && !Rails.env.development?
     raise 'you must set INITIAL_ADMIN_USER_EMAIL environment variable'
   end
 
-  unless User.where(email: ENV['INITIAL_ADMIN_USER_EMAIL']).exists?
+  unless User.where(email: ENV['INITIAL_ADMIN_USER_EMAIL']).exists? || ENV['INITIAL_ADMIN_USER_EMAIL'].blank?
     admin_user = User.new(email: ENV['INITIAL_ADMIN_USER_EMAIL'])
     admin_user.is_admin_user = true
     admin_user.skip_confirmation_notification! # stop email from being sent
 
     if Rails.env.test? || Rails.env.development?
-      if ENV['TEST_INITIAL_ADMIN_PASSWORD'].blank?
+      if ENV['TEST_INITIAL_ADMIN_PASSWORD'].blank? && !Rails.env.development?
         raise 'you must set TEST_INITIAL_ADMIN_PASSWORD environment variable for test and development environments'
       end
       admin_user.password = ENV['TEST_INITIAL_ADMIN_PASSWORD']
@@ -45,6 +45,10 @@ INITIALIZE_ADMIN_USER = Proc.new do
     end
   end
 end
+
+require ::File.expand_path('../../lib/rack/set_suspended_response_status',  __FILE__)
+require ::File.expand_path('../../lib/rack/json_content_length',  __FILE__)
+
 
 module DeviseAuthenticationApi
   class Application < Rails::Application
@@ -75,7 +79,7 @@ module DeviseAuthenticationApi
       INITIALIZE_ADMIN_USER.call
     end
 
-    # config.middleware.use Rack::ToBeDecided
-
+    config.middleware.insert_before(Warden::Manager, Rack::SetSuspendedResponseStatus)
+    config.middleware.insert_before(Warden::Manager, Rack::JsonContentLength)
   end
 end

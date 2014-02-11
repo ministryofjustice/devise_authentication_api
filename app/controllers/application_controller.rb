@@ -44,4 +44,8 @@ class ApplicationController < ActionController::API
     render text: "{\"error\":\"#{error}\"}", status: :unauthorized
   end
 
+  def render_forbidden error=''
+    render text: "{\"error\":\"#{error}\"}", status: :unauthorized
+  end
+
 end
