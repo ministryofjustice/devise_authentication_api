@@ -1,5 +1,11 @@
 # devise_authentication_api
 
+## User states
+
+Each user is known to the authentication API, and can exist in a number of persistent states:
+
+![image](docs/auth-state-transition.png)
+
 ## Local installation
 
 ### Install mongodb
@@ -263,7 +269,6 @@ Failure due to user account suspended:
     {"error":"Your account is suspended."}
 
 
-
 ### Verify user token
 
     GET [host]/users/[authentication_token]
@@ -377,6 +382,14 @@ Failure due to admin account suspended:
 
 ### Admin sets user's statuses
 
+### Admin unlock user account
+
+    POST [host]/admin/[admin_authentication_token]/users/unlock
+
+    with JSON body
+
+    { "user": { "email":"joe.bloggs@example.com"}}
+
 
 #### Suspended status
 
@@ -427,9 +440,4 @@ An API to provide authenication functionality to a simple authentication layer. 
 
 The authentication layer is intended to be a standalone reverse proxy. However, currently it is implemented as a [ruby/rack middleware application](https://github.com/ministryofjustice/x-moj-auth) and a PHP membrane application.
 
-## User states (proposed - not all implemented yet)
-
-Each user is known to the authentication API, and can exist in a number of persistent states:
-
-![image](docs/auth-state-transition.png)
 

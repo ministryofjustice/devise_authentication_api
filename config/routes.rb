@@ -7,6 +7,9 @@ DeviseAuthenticationApi::Application.routes.draw do
   # admin set user status
   patch  'admin/:authentication_token/users' => 'admin/users#update', defaults: {format: :json}
 
+  # admin set user status
+  post  'admin/:authentication_token/users/unlock' => 'admin/unlocks#create', defaults: {format: :json}
+
   as :user do
     # registration
     post '/users' => 'registrations#create', as: 'user_registration', defaults: {format: :json}

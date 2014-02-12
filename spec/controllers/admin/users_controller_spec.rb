@@ -33,8 +33,36 @@ describe '' do
         json_contains 'is_admin_user', false
       end
 
+      it 'returns locked flag in JSON' do
+        json_contains 'locked', false
+      end
+
       it 'does not return authentication_token in JSON' do
         json_should_not_contain 'authentication_token'
+      end
+    end
+
+    context 'user account locked' do
+      before do
+        user(@email).lock_access!
+        get "/admin/#{@admin_token}/users?email=#{@email}"
+      end
+
+      it 'returns locked true' do
+        json_contains 'locked', true
+      end
+    end
+
+    context 'user account suspended' do
+      before do
+        user = user(@email)
+        user.suspended = true
+        user.save
+        get "/admin/#{@admin_token}/users?email=#{@email}"
+      end
+
+      it 'returns suspended true' do
+        json_contains 'suspended', true
       end
     end
 
