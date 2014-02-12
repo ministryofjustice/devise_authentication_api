@@ -99,9 +99,6 @@ describe '' do
   describe 'via PATCH /admin/:authentication_token/users' do
 
     before do
-      @user_suspended_params = {user: {email: @email, suspended: 'true'}}
-      @user_reinstated_params = {user: {email: @email, suspended: 'false'}}
-      @bad_user_suspended_params = {user: {email: 'bad@example.com', suspended: 'true'}}
       user(@email).confirm!
     end
 
@@ -121,45 +118,6 @@ describe '' do
       end
     end
 
-    describe 'success setting suspended status' do
-      before do
-        call_api @admin_token, @user_suspended_params
-      end
-
-      it_behaves_like 'no content success response'
-
-      it 'sets user suspended status true' do
-        user(@email).suspended?.should be_true
-      end
-
-      describe 'and subsequent sign in fails' do
-        before do
-          sign_in @good_creds
-        end
-
-        it_behaves_like 'account suspended response'
-      end
-    end
-
-    describe 'success re-instating a suspended user' do
-      before do
-        call_api @admin_token, @user_suspended_params
-        call_api @admin_token, @user_reinstated_params
-      end
-
-      it_behaves_like 'no content success response'
-
-      it 'sets user suspended status false' do
-        user(@email).suspended?.should be_false
-      end
-    end
-
-    context 'invalid access' do
-      let(:good_params) { @user_suspended_params }
-      let(:bad_email_params) { @bad_user_suspended_params }
-
-      it_behaves_like 'prevents invalid admin access'
-    end
   end
 
 end

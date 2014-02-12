@@ -7,8 +7,14 @@ DeviseAuthenticationApi::Application.routes.draw do
   # admin set user status
   patch  'admin/:authentication_token/users' => 'admin/users#update', defaults: {format: :json}
 
-  # admin set user status
+  # admin unlocks user account
   post  'admin/:authentication_token/users/unlock' => 'admin/unlocks#create', defaults: {format: :json}
+
+  # admin suspends user account
+  post  'admin/:authentication_token/users/suspend' => 'admin/suspends#create', defaults: {format: :json}
+
+  # admin reinstate user account
+  delete 'admin/:authentication_token/users/suspend' => 'admin/suspends#destroy', defaults: {format: :json}
 
   as :user do
     # registration
