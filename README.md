@@ -391,13 +391,21 @@ Failure due to admin account suspended:
     { "user": { "email":"joe.bloggs@example.com"}}
 
 
-#### Suspended status
+#### Suspend user account
 
-    PATCH [host]/admin/[admin_authentication_token]/users
+    POST [host]/admin/[admin_authentication_token]/users/suspend
 
     # with JSON body
 
-    {"email":"joe.bloggs@example.com","suspended":"true"}
+    {"email":"joe.bloggs@example.com"}
+
+#### Reinstate user account
+
+    DELETE [host]/admin/[admin_authentication_token]/users/suspend
+
+    # with JSON body
+
+    {"email":"joe.bloggs@example.com"}
 
 #### Admin status
 
