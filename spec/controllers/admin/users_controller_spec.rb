@@ -29,6 +29,10 @@ describe '' do
         json_contains 'suspended', false
       end
 
+      it 'returns is_admin_user flag in JSON' do
+        json_contains 'is_admin_user', false
+      end
+
       it 'does not return authentication_token in JSON' do
         json_should_not_contain 'authentication_token'
       end
