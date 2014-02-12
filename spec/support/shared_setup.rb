@@ -47,3 +47,38 @@ shared_examples 'account suspended response' do
     json_contains 'error', 'Your account is suspended.'
   end
 end
+
+shared_examples 'prevents invalid admin access' do
+  describe 'failure due to suspended admin user' do
+    before do
+      @admin_user.suspended = true
+      @admin_user.save
+
+      call_api @admin_token, good_params
+    end
+
+    it_behaves_like 'account suspended response'
+  end
+
+  describe 'failure due to invalid user email' do
+    before do
+      call_api @admin_token, bad_email_params
+    end
+
+    it 'returns 422 status code' do
+      status_code_is 422
+    end
+
+    it 'returns error message' do
+      json_contains 'error', 'No user found for email.'
+    end
+  end
+
+  describe 'failure due to invalid token' do
+    before do
+      call_api 'bad_token', good_params
+    end
+
+    it_behaves_like 'unauthorized with invalid token error'
+  end
+end

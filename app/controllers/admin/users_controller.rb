@@ -15,9 +15,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    email = params[:user] && params[:user][:email]
-    suspended = params[:user] && params[:user][:suspended]
-    is_admin_user = params[:user] && params[:user][:is_admin_user]
+    email = user_param :email
+    suspended = user_param :suspended
+    is_admin_user = user_param :is_admin_user
 
     if user = User.for_email(email)
       user.suspended = suspended
@@ -39,4 +39,7 @@ class Admin::UsersController < ApplicationController
 
   include AuthenticateAdminUser
 
+  def user_param symbol
+    params[:user] && params[:user][symbol]
+  end
 end
