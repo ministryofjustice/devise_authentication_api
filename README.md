@@ -382,7 +382,7 @@ Failure due to admin account suspended:
 
 ### Admin sets user's statuses
 
-### Admin unlock user account
+#### Admin unlock user account
 
     POST [host]/admin/[admin_authentication_token]/users/unlock
 
@@ -397,7 +397,7 @@ Failure due to admin account suspended:
 
     # with JSON body
 
-    {"email":"joe.bloggs@example.com"}
+    { "user": { "email":"joe.bloggs@example.com"}}
 
 #### Reinstate user account
 
@@ -405,15 +405,23 @@ Failure due to admin account suspended:
 
     # with JSON body
 
-    {"email":"joe.bloggs@example.com"}
+    { "user": { "email":"joe.bloggs@example.com"}}
 
-#### Admin status
+#### Add admin rights to user
 
-    PATCH [host]/admin/[admin_authentication_token]/users
+    POST [host]/admin/[admin_authentication_token]/users/admin_user
 
     # with JSON body
 
-    {"email":"joe.bloggs@example.com","is_admin_user":"true"}
+    { "user": { "email":"joe.bloggs@example.com"}}
+
+#### Remove admin rights from user
+
+    DELETE [host]/admin/[admin_authentication_token]/users/admin_user
+
+    # with JSON body
+
+    { "user": { "email":"joe.bloggs@example.com"}}
 
 Success:
 

@@ -14,30 +14,7 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def update
-    email = user_param :email
-    is_admin_user = user_param :is_admin_user
-
-    if user = User.for_email(email)
-      user.is_admin_user = is_admin_user
-
-      if user.valid?
-        user.save!
-        render_success
-      else
-        errors = user.errors.messages.to_json
-        render_errors errors
-      end
-    else
-      render_error 'No user found for email.'
-    end
-  end
-
   protected
 
   include AuthenticateAdminUser
-
-  def user_param symbol
-    params[:user] && params[:user][symbol]
-  end
 end

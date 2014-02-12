@@ -96,28 +96,4 @@ describe '' do
     end
   end
 
-  describe 'via PATCH /admin/:authentication_token/users' do
-
-    before do
-      user(@email).confirm!
-    end
-
-    def call_api admin_token, params
-      patch "/admin/#{admin_token}/users", params
-    end
-
-    describe 'success setting admin status' do
-      before do
-        call_api @admin_token, {user: {email: @email, is_admin_user: 'true'}}
-      end
-
-      it_behaves_like 'no content success response'
-
-      it 'sets user is_admin_user status true' do
-        user(@email).is_admin_user?.should be_true
-      end
-    end
-
-  end
-
 end

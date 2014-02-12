@@ -17,7 +17,7 @@ module Rack
       if !STATUS_WITH_NO_ENTITY_BODY.include?(status.to_i) &&
          !headers['Content-Length'] &&
          !headers['Transfer-Encoding'] &&
-         headers['Content-Type'][/application\/json/]
+         (headers['Content-Type'] && headers['Content-Type'][/application\/json/])
 
         obody = body
         new_body, length = [], 0
