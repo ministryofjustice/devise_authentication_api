@@ -345,7 +345,7 @@ Failure due to user account suspended:
     {"error":"Your account is suspended."}
 
 
-### Admin views user's suspended status
+### Admin views user's statuses
 
     GET [host]/admin/[admin_authentication_token]/users?email=[email]
 
@@ -353,9 +353,7 @@ Success:
 
     200 OK
 
-    {"email":"joe.bloggs@example.com","suspended":"true"}
-
-    {"email":"joe.bloggs@example.com","suspended":"false"}
+    {"email":"joe.bloggs@example.com","suspended":"true","is_admin_user":"false"}
 
 Failure due to invalid user:
 
@@ -377,13 +375,24 @@ Failure due to admin account suspended:
 
 
 
-### Admin sets user's suspended status
+### Admin sets user's statuses
+
+
+#### Suspended status
 
     PATCH [host]/admin/[admin_authentication_token]/users
 
     # with JSON body
 
     {"email":"joe.bloggs@example.com","suspended":"true"}
+
+#### Admin status
+
+    PATCH [host]/admin/[admin_authentication_token]/users
+
+    # with JSON body
+
+    {"email":"joe.bloggs@example.com","is_admin_user":"true"}
 
 Success:
 
