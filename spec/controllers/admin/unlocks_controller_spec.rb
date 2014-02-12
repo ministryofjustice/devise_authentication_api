@@ -21,10 +21,14 @@ describe 'unlock via POST /admin/:authentication_token/users/unlock' do
       user(@email).access_locked?.should be_true
     end
 
+    def call_api admin_token, params
+      post "/admin/#{admin_token}/users/unlock", params
+    end
+
     describe 'success' do
       before do
         @user_params = {user: {email: @email}}
-        post "/admin/#{@admin_token}/users/unlock", @user_params
+        call_api @admin_token, @user_params
       end
 
       it_behaves_like 'no content success response'
@@ -33,6 +37,14 @@ describe 'unlock via POST /admin/:authentication_token/users/unlock' do
         user(@email).access_locked?.should be_false
       end
     end
+
+    context 'invalid access' do
+      let(:good_params) { @user_params }
+      let(:bad_email_params) { {user: {email: 'bad_email'}} }
+
+      it_behaves_like 'prevents invalid admin access'
+    end
+
   end
 
 end
