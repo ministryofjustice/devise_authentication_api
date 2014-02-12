@@ -1,25 +1,34 @@
 module Admin; end
 
-class Admin::UsersController < ApplicationController
+class Admin::SuspendsController < ApplicationController
 
   respond_to :json
 
   before_filter :return_unauthorised_if_not_admin_user_or_suspended
 
-  def show
-    if user = User.for_email(params[:email])
-      render json: user.as_json(admin: true)
+  def create
+    email = params[:user] && params[:user][:email]
+
+    if user = User.for_email(email)
+      user.suspended = true
+
+      if user.valid?
+        user.save!
+        render_success
+      else
+        errors = user.errors.messages.to_json
+        render_errors errors
+      end
     else
       render_error 'No user found for email.'
     end
   end
 
-  def update
-    email = user_param :email
-    is_admin_user = user_param :is_admin_user
+  def destroy
+    email = params[:user] && params[:user][:email]
 
     if user = User.for_email(email)
-      user.is_admin_user = is_admin_user
+      user.suspended = false
 
       if user.valid?
         user.save!
@@ -37,7 +46,4 @@ class Admin::UsersController < ApplicationController
 
   include AuthenticateAdminUser
 
-  def user_param symbol
-    params[:user] && params[:user][symbol]
-  end
 end
