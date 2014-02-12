@@ -17,9 +17,12 @@ class Admin::UsersController < ApplicationController
   def update
     email = params[:user] && params[:user][:email]
     suspended = params[:user] && params[:user][:suspended]
+    is_admin_user = params[:user] && params[:user][:is_admin_user]
 
     if user = User.for_email(email)
       user.suspended = suspended
+      user.is_admin_user = is_admin_user
+
       if user.valid?
         user.save!
         render_success

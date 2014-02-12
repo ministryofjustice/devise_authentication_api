@@ -68,7 +68,7 @@ describe '' do
     end
   end
 
-  describe 'set user suspended status via PATCH /admin/:authentication_token/users' do
+  describe 'via PATCH /admin/:authentication_token/users' do
 
     before do
       @user_suspended_params = {user: {email: @email, suspended: 'true'}}
@@ -77,7 +77,19 @@ describe '' do
       user(@email).confirm!
     end
 
-    describe 'success setting suspended' do
+    describe 'success setting admin status' do
+      before do
+        patch "/admin/#{@admin_token}/users", {user: {email: @email, is_admin_user: 'true'}}
+      end
+
+      it_behaves_like 'no content success response'
+
+      it 'sets user is_admin_user status true' do
+        user(@email).is_admin_user?.should be_true
+      end
+    end
+
+    describe 'success setting suspended status' do
       before { patch "/admin/#{@admin_token}/users", @user_suspended_params }
 
       it_behaves_like 'no content success response'
@@ -93,11 +105,13 @@ describe '' do
 
         it_behaves_like 'account suspended response'
       end
-
     end
 
-    describe 'and success re-instating' do
-      before { patch "/admin/#{@admin_token}/users", @user_reinstated_params}
+    describe 'success re-instating a suspended user' do
+      before do
+        patch "/admin/#{@admin_token}/users", @user_suspended_params
+        patch "/admin/#{@admin_token}/users", @user_reinstated_params
+      end
 
       it_behaves_like 'no content success response'
 
@@ -135,4 +149,5 @@ describe '' do
       it_behaves_like 'unauthorized with invalid token error'
     end
   end
+
 end
