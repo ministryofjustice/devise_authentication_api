@@ -19,13 +19,18 @@ DeviseAuthenticationApi::Application.routes.draw do
   # admin removes admin rights from user
   delete 'admin/:authentication_token/users/admin_user' => 'admin/admin_users#destroy', defaults: {format: :json}
 
-
   as :user do
     # registration
     post '/users' => 'registrations#create', as: 'user_registration', defaults: {format: :json}
 
     # session creation
     post '/sessions' => 'devise/sessions#create', as: 'user_session', defaults: {format: :json}
+
+    # password reset email
+    post '/users/password' => 'devise/passwords#create', as: 'user_password', defaults: {format: :json}
+
+    # reset user password
+    patch '/users/password/:reset_password_token' => 'passwords#update', as: 'edit_user_password', defaults: {format: :json}
 
     # admin registration of user
     post '/admin/:authentication_token/users' => 'admin/registrations#create', defaults: {format: :json}
