@@ -29,11 +29,8 @@ DeviseAuthenticationApi::Application.routes.draw do
     # password reset email
     post '/users/password' => 'devise/passwords#create', as: 'user_password', defaults: {format: :json}
 
-    # edit user password
-    get '/users/password/edit' => 'passwords#edit', as: 'edit_user_password', defaults: {format: :json}
-
     # reset user password
-    patch '/users/password/:reset_password_token' => 'passwords#update', defaults: {format: :json}
+    patch '/users/password/:reset_password_token' => 'passwords#update', as: 'edit_user_password', defaults: {format: :json}
 
     # admin registration of user
     post '/admin/:authentication_token/users' => 'admin/registrations#create', defaults: {format: :json}

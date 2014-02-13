@@ -15,7 +15,7 @@ describe '' do
         post '/users/password', {user: {email: @email}}
 
         message = ActionMailer::Base.deliveries.last
-        @reset_token = message.body.raw_source[/reset_password_token=([^"]+)/,1]
+        @reset_token = message.body.raw_source[/password\/([^"]+)/,1]
       end
 
       describe 'success' do
@@ -26,7 +26,7 @@ describe '' do
         it_behaves_like 'no content success response'
 
         it 'changes password' do
-          user(@email).valid_password?('newpassword')
+          user(@email).valid_password?('newpassword').should be_true
         end
       end
 
@@ -40,13 +40,37 @@ describe '' do
         end
 
         it 'returns error message' do
-          json_contains 'errors', {"password"=>["cannot be blank"]}
+          json_contains 'errors', {"password"=>["can't be blank"]}
         end
 
         it 'does not change password' do
-          user(@email).valid_password?(@password)
+          user(@email).valid_password?(@password).should be_true
         end
       end
+
+      describe 'failure due to bad token' do
+        before do
+          patch "/users/password/bad_token", {user: {password: 'newpassword'}}
+        end
+
+        it_behaves_like 'unauthorized with invalid token error'
+
+        it 'does not change password' do
+          user(@email).valid_password?(@password).should be_true
+        end
+      end
+
+      describe 'failure due to suspended user' do
+        before do
+          user = user(@email)
+          user.suspended = true
+          user.save!
+          patch "/users/password/#{@reset_token}", {user: {password: 'newpassword'}}
+        end
+
+        it_behaves_like 'account suspended response'
+      end
+
     end
   end
 

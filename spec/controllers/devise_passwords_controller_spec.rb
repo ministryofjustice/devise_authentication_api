@@ -30,7 +30,7 @@ describe '' do
         message.to.should == [@email]
         message.from.should == [ENV['SENDER_EMAIL_ADDRESS']]
         message.subject.should == 'Reset password instructions'
-        message.body.raw_source.should include('http://testhost/users/password/edit?reset_password_token=')
+        message.body.raw_source.should include('http://testhost/users/password/')
       end
     end
   end

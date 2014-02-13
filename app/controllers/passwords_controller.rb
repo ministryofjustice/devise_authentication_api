@@ -11,7 +11,7 @@ class PasswordsController < ApplicationController
     password = params[:user] && params[:user][:password]
 
     if password.blank?
-      errors = { 'password' => ['cannot be blank'] }.to_json
+      errors = { 'password' => ["can't be blank"] }.to_json
       render text: "{\"errors\":#{errors}}", status: :unprocessable_entity
     else
       user = User.reset_password_by_token(reset_password_token: token, password: password, password_confirmation: password)

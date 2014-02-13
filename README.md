@@ -293,7 +293,55 @@ Failure due to user account suspended:
 
 
 
-### User change password
+### Reset password
+
+#### Request reset email
+
+    POST [host]/users/password
+
+    # with JSON body:
+
+    { "user": { "email": "joe.bloggs@example.com" } }
+
+    # Reset email is sent to "joe.bloggs@example.com" containing URL with reset_token.
+    # If SITE_URL=http://url_of_client_service.com, then the reset URL in email looks like:
+
+    http://url_of_client_service.com/users/password/Ns5sRA1S7dcoEnm_Uaxt
+
+#### Reset email with token
+
+    PATCH [host]/users/password/[reset_password_token]
+
+    # with JSON body:
+
+    { "user": { "password": "n3w-s3kr!tpa55" } }
+
+Success:
+
+    204 No Content
+
+Failure due to invalid reset_token:
+
+    401 Unauthorized
+
+    '{"error":"Invalid token."}'
+
+Failure due to invalid password:
+
+    422 Unprocessable Entity
+
+    {"errors":{"password":["is too short (minimum is 8 characters)"]}}
+
+Failure due to user account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
+
+
+
+
+### User change password when signed in
 
     PATCH [host]/users/[authentication_token]
 
