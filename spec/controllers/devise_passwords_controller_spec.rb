@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'request password reset via POST /users/password' do
+describe '' do
 
   include ApiHelper
   include_context "shared setup"
@@ -9,7 +9,7 @@ describe 'request password reset via POST /users/password' do
 
     before { register_and_confirm @good_creds }
 
-    describe 'success' do
+    describe 'request password reset via POST /users/password' do
       before do
         ActionMailer::Base.deliveries.clear
         post '/users/password', {user: {email: @email}}
@@ -34,6 +34,5 @@ describe 'request password reset via POST /users/password' do
       end
     end
   end
-
 
 end
