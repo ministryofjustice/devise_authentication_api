@@ -2,10 +2,6 @@ class PasswordsController < ApplicationController
 
   respond_to :json
 
-  def edit
-    # route required for reset email template to render, no implementation in API
-  end
-
   def update
     token = params[:reset_password_token]
     password = params[:user] && params[:user][:password]
