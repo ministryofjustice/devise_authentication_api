@@ -45,8 +45,8 @@ class User
   field :authentication_token, type: String
 
   index({ authentication_token: 1 }, { unique: true })
-  index({ confirmation_token: 1 }, { unique: true })
-  index({ unlock_token: 1 }, { unique: true })
+  index({ confirmation_token: 1 }, { unique: false })
+  index({ unlock_token: 1 }, { unique: false })
   index({ email: 1 }, { unique: true })
 
   before_save :ensure_authentication_token
@@ -122,7 +122,7 @@ class User
         has_provided_password = !encrypted_password.blank?
         if has_provided_password
           fields.merge!(confirmation_token: @raw_confirmation_token)
-        elsif Rails.env.test?
+        elsif Rails.env.test? || Rails.env.development?
           fields.merge!(confirmation_token_for_tests_only: @raw_confirmation_token)
         end
       else
