@@ -122,7 +122,7 @@ class User
         has_provided_password = !encrypted_password.blank?
         if has_provided_password
           fields.merge!(confirmation_token: @raw_confirmation_token)
-        elsif Rails.env.test?
+        elsif Rails.env.test? || Rails.env.development?
           fields.merge!(confirmation_token_for_tests_only: @raw_confirmation_token)
         end
       else
