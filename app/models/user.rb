@@ -44,10 +44,10 @@ class User
   ## Token authentication
   field :authentication_token, type: String
 
-  index({ authentication_token: 1 }, { unique: true })
-  index({ confirmation_token: 1 }, { unique: true })
-  index({ unlock_token: 1 }, { unique: true })
-  index({ email: 1 }, { unique: true })
+  index({ authentication_token: 1 }, { unique: false, sparse: true })
+  index({ confirmation_token: 1 },   { unique: false, sparse: true })
+  index({ unlock_token: 1 },         { unique: false, sparse: true })
+  index({ email: 1 },                { unique: false, sparse: true })
 
   before_save :ensure_authentication_token
 
