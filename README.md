@@ -423,6 +423,38 @@ Failure due to user account suspended:
     {"error":"Your account is suspended."}
 
 
+### Admin resends user confirmation email
+
+    POST [host]/admin/[admin_authentication_token]/users/confirm
+
+    with JSON body
+
+    { "user": { "email":"joe.bloggs@example.com"}}
+
+Success:
+
+    204 No Content
+
+Failure due to invalid user:
+
+    422 Unprocessable Entity
+
+    {"error":"No user found for email."}
+
+Failure due to invalid token:
+
+    401 Unauthorized
+
+    '{"error":"Invalid token."}'
+
+Failure due to admin account suspended:
+
+    403 Forbidden
+
+    {"error":"Your account is suspended."}
+
+
+
 ### Admin views user's statuses
 
     GET [host]/admin/[admin_authentication_token]/users?email=[email]
@@ -454,15 +486,6 @@ Failure due to admin account suspended:
 
 
 ### Admin sets user's statuses
-
-#### Admin resend user confirmation email
-
-    POST [host]/admin/[admin_authentication_token]/users/confirm
-
-    with JSON body
-
-    { "user": { "email":"joe.bloggs@example.com"}}
-
 
 #### Admin unlock user account
 
