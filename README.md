@@ -59,7 +59,7 @@ Number of authentication tries before locking an account.
 
 Unlock strategy defines which strategy will be used to unlock an account.
     # email = Sends an unlock link to the user email
-    # time  = Re-enables login after a certain amount of time (see :unlock_in below)
+    # time  = Re-enables login after a certain amount of time (see UNLOCK_IN_SECS below)
     # both  = Enables both strategies
     # none  = No unlock strategy. You should handle unlocking by yourself via admin unlock action.
 
