@@ -32,6 +32,19 @@ E.g. on mac osx:
 
 ### Environment variables
 
+Rails environment, for production
+
+    RAILS_ENV=production
+
+Or, development Rails environment
+
+    RAILS_ENV=development
+
+Or, test Rails environment
+
+    RAILS_ENV=test
+
+
 Email of initial admin user, an activation email will be sent to this address.
 
     INITIAL_ADMIN_USER_EMAIL=admin@example.com
@@ -44,9 +57,20 @@ Number of authentication tries before locking an account.
 
     MAXIMUM_ATTEMPTS=5
 
-Time interval in seconds to unlock the account.
+Unlock strategy defines which strategy will be used to unlock an account.
+    # email = Sends an unlock link to the user email
+    # time  = Re-enables login after a certain amount of time (see UNLOCK_IN_SECS below)
+    # both  = Enables both strategies
+    # none  = No unlock strategy. You should handle unlocking by yourself via admin unlock action.
+
+    # defaults to none
+    UNLOCK_STRATEGY=none
+
+Time interval in seconds to unlock the account, if unlock strategy is set to time
 
     UNLOCK_IN_SECS=86400
+
+
 
 Sender email address for email 'from' field.
 

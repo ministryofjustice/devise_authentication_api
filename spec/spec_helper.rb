@@ -1,6 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 ENV['MAXIMUM_ATTEMPTS'] ||= '5'
+ENV['UNLOCK_STRATEGY'] ||= 'email'
 ENV['UNLOCK_IN_SECS'] ||= '60'
 ENV['INITIAL_ADMIN_USER_EMAIL'] ||= 'admin@testhost'
 ENV['SENDER_EMAIL_ADDRESS'] ||= 'sender@testhost'
