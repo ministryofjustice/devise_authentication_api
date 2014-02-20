@@ -455,6 +455,15 @@ Failure due to admin account suspended:
 
 ### Admin sets user's statuses
 
+#### Admin resend user confirmation email
+
+    POST [host]/admin/[admin_authentication_token]/users/confirm
+
+    with JSON body
+
+    { "user": { "email":"joe.bloggs@example.com"}}
+
+
 #### Admin unlock user account
 
     POST [host]/admin/[admin_authentication_token]/users/unlock
