@@ -6,6 +6,7 @@ DeviseAuthenticationApi::Application.initialize!
 
 smtp_settings = {
   address:        ENV['SMTP_SERVER'] || 'smtp.sendgrid.net',
+  port:           ENV['SMTP_PORT'] || '587',
   authentication: :plain,
   user_name:      ENV['SMTP_USERNAME'],
   password:       ENV['SMTP_PASSWORD'],
