@@ -90,11 +90,12 @@ Secret key base.
     require 'securerandom'
     generated_key=SecureRandom.hex(64)
 
-If using sendgrid for email, these environment variables are used in config/environment.rb
+If using SMTP for email, these environment variables are used in config/environment.rb
 
-    SENDGRID_PASSWORD=123456789
-    SENDGRID_USERNAME=an@example.com
-    SENDGRID_DOMAIN=heroku.com
+    SMTP_SERVER=mail.example.com
+    SMTP_PASSWORD=123456789
+    SMTP_USERNAME=an@example.com
+    SMTP_DOMAIN=heroku.com # The domain to report in the HELO command. Optional
 
 
 ### Run server

@@ -5,14 +5,13 @@ require File.expand_path('../application', __FILE__)
 DeviseAuthenticationApi::Application.initialize!
 
 smtp_settings = {
-  address:        'smtp.sendgrid.net',
-  port:           '587',
+  address:        ENV['SMTP_SERVER'] || 'smtp.sendgrid.net',
   authentication: :plain,
-  user_name:      ENV['SENDGRID_USERNAME'],
-  password:       ENV['SENDGRID_PASSWORD'],
+  user_name:      ENV['SMTP_USERNAME'],
+  password:       ENV['SMTP_PASSWORD'],
   enable_starttls_auto: true
 }
 
-smtp_settings.merge!(domain: ENV['SENDGRID_DOMAIN']) unless ENV['SENDGRID_DOMAIN'].blank?
+smtp_settings.merge!(domain: ENV['SMTP_DOMAIN']) unless ENV['SMTP_DOMAIN'].blank?
 
 ActionMailer::Base.smtp_settings = smtp_settings
