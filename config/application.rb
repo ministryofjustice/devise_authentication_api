@@ -26,7 +26,7 @@ INITIALIZE_ADMIN_USER = Proc.new do
   unless User.where(email: ENV['INITIAL_ADMIN_USER_EMAIL']).exists? || ENV['INITIAL_ADMIN_USER_EMAIL'].blank?
     admin_user = User.new(email: ENV['INITIAL_ADMIN_USER_EMAIL'])
     admin_user.is_admin_user = true
-    admin_user.skip_confirmation_notification! # stop email from being sent
+    admin_user.skip_confirmation! # stop email from being sent
 
     if Rails.env.test? || Rails.env.development?
       if ENV['TEST_INITIAL_ADMIN_PASSWORD'].blank? && !Rails.env.development?
