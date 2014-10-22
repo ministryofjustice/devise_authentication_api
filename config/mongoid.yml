@@ -1,0 +1,9 @@
+
+
+development:
+  sessions:
+    default:
+      database: devise_authentication_api_development
+      hosts:
+        - localhost:27017
+        

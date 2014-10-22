@@ -63,8 +63,8 @@ checked program was:
 have_func: checking for rb_str_set_len() in ruby.h... -------------------- yes
 
 "gcc -o conftest -I/usr/local/include/ruby-2.0.0/x86_64-linux -I/usr/local/include/ruby-2.0.0/ruby/backward -I/usr/local/include/ruby-2.0.0 -I.     -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration conftest.c  -L. -L/usr/local/lib -Wl,-R/usr/local/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/local/lib -L/usr/local/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
-conftest.c: In function 't':
-conftest.c:7:32: warning: variable 'p' set but not used [-Wunused-but-set-variable]
+conftest.c: In function ‘t’:
+conftest.c:7:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
 checked program was:
 /* begin */
  1: #include "ruby.h"
@@ -89,8 +89,8 @@ checked program was:
 have_func: checking for gmtime_r() in time.h... -------------------- yes
 
 "gcc -o conftest -I/usr/local/include/ruby-2.0.0/x86_64-linux -I/usr/local/include/ruby-2.0.0/ruby/backward -I/usr/local/include/ruby-2.0.0 -I.     -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration conftest.c  -L. -L/usr/local/lib -Wl,-R/usr/local/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/local/lib -L/usr/local/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
-conftest.c: In function 't':
-conftest.c:7:32: warning: variable 'p' set but not used [-Wunused-but-set-variable]
+conftest.c: In function ‘t’:
+conftest.c:7:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
 checked program was:
 /* begin */
  1: #include "ruby.h"

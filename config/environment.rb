@@ -5,11 +5,11 @@ require File.expand_path('../application', __FILE__)
 DeviseAuthenticationApi::Application.initialize!
 
 smtp_settings = {
-  address:        ENV['SMTP_SERVER'] || 'smtp.sendgrid.net',
-  port:           ENV['SMTP_PORT'] || '587',
+  address:        "smtp.sendgrid.net" || 'smtp.sendgrid.net',
+  port:           "587" || '587',
   authentication: :plain,
-  user_name:      ENV['SMTP_USERNAME'],
-  password:       ENV['SMTP_PASSWORD'],
+  user_name:      "opg-backoffice",
+  password:       "UYTFGKJBJgvjhkjYTFGKHKHjhbkhjvyRKJJHV",
   enable_starttls_auto: true
 }
 

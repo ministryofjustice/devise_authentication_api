@@ -12,8 +12,8 @@ checked program was:
 /* end */
 
 "gcc -o conftest -I/usr/local/include/ruby-2.0.0/x86_64-linux -I/usr/local/include/ruby-2.0.0/ruby/backward -I/usr/local/include/ruby-2.0.0 -I.     -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration conftest.c  -L. -L/usr/local/lib -Wl,-R/usr/local/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/local/lib -L/usr/local/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
-conftest.c: In function 't':
-conftest.c:7:32: warning: variable 'p' set but not used [-Wunused-but-set-variable]
+conftest.c: In function ‘t’:
+conftest.c:7:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
 checked program was:
 /* begin */
  1: #include "ruby.h"
@@ -38,8 +38,8 @@ checked program was:
 have_func: checking for munmap() in sys/mman.h... -------------------- yes
 
 "gcc -o conftest -I/usr/local/include/ruby-2.0.0/x86_64-linux -I/usr/local/include/ruby-2.0.0/ruby/backward -I/usr/local/include/ruby-2.0.0 -I.     -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration conftest.c  -L. -L/usr/local/lib -Wl,-R/usr/local/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/local/lib -L/usr/local/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
-conftest.c: In function 't':
-conftest.c:7:32: warning: variable 'p' set but not used [-Wunused-but-set-variable]
+conftest.c: In function ‘t’:
+conftest.c:7:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
 checked program was:
 /* begin */
  1: #include "ruby.h"
@@ -64,8 +64,8 @@ checked program was:
 have_func: checking for mremap() in sys/mman.h... -------------------- yes
 
 "gcc -o conftest -I/usr/local/include/ruby-2.0.0/x86_64-linux -I/usr/local/include/ruby-2.0.0/ruby/backward -I/usr/local/include/ruby-2.0.0 -I.    -D_GNU_SOURCE   -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration conftest.c  -L. -L/usr/local/lib -Wl,-R/usr/local/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/local/lib -L/usr/local/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
-conftest.c: In function 't':
-conftest.c:7:32: warning: variable 'p' set but not used [-Wunused-but-set-variable]
+conftest.c: In function ‘t’:
+conftest.c:7:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
 checked program was:
 /* begin */
  1: #include "ruby.h"
@@ -90,8 +90,8 @@ checked program was:
 have_func: checking for getpagesize() in unistd.h... -------------------- yes
 
 "gcc -o conftest -I/usr/local/include/ruby-2.0.0/x86_64-linux -I/usr/local/include/ruby-2.0.0/ruby/backward -I/usr/local/include/ruby-2.0.0 -I.    -D_GNU_SOURCE  -D_BSD_SOURCE   -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration conftest.c  -L. -L/usr/local/lib -Wl,-R/usr/local/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/local/lib -L/usr/local/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
-conftest.c: In function 't':
-conftest.c:7:32: warning: variable 'p' set but not used [-Wunused-but-set-variable]
+conftest.c: In function ‘t’:
+conftest.c:7:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
 checked program was:
 /* begin */
  1: #include "ruby.h"
@@ -116,9 +116,9 @@ checked program was:
 have_func: checking for rb_thread_blocking_region()... -------------------- yes
 
 "gcc -o conftest -I/usr/local/include/ruby-2.0.0/x86_64-linux -I/usr/local/include/ruby-2.0.0/ruby/backward -I/usr/local/include/ruby-2.0.0 -I.    -D_GNU_SOURCE  -D_BSD_SOURCE   -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration conftest.c  -L. -L/usr/local/lib -Wl,-R/usr/local/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/local/lib -L/usr/local/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
-conftest.c: In function 't':
-conftest.c:5:1: warning: 'rb_thread_blocking_region' is deprecated (declared at /usr/local/include/ruby-2.0.0/ruby/intern.h:841) [-Wdeprecated-declarations]
-conftest.c:5:32: warning: variable 'p' set but not used [-Wunused-but-set-variable]
+conftest.c: In function ‘t’:
+conftest.c:5:1: warning: ‘rb_thread_blocking_region’ is deprecated (declared at /usr/local/include/ruby-2.0.0/ruby/intern.h:841) [-Wdeprecated-declarations]
+conftest.c:5:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
 checked program was:
 /* begin */
  1: #include "ruby.h"
@@ -141,10 +141,10 @@ checked program was:
 have_func: checking for rb_thread_io_blocking_region()... -------------------- yes
 
 "gcc -o conftest -I/usr/local/include/ruby-2.0.0/x86_64-linux -I/usr/local/include/ruby-2.0.0/ruby/backward -I/usr/local/include/ruby-2.0.0 -I.    -D_GNU_SOURCE  -D_BSD_SOURCE   -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration conftest.c  -L. -L/usr/local/lib -Wl,-R/usr/local/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/local/lib -L/usr/local/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
-conftest.c: In function 't':
-conftest.c:5:57: error: 'rb_thread_io_blocking_region' undeclared (first use in this function)
+conftest.c: In function ‘t’:
+conftest.c:5:57: error: ‘rb_thread_io_blocking_region’ undeclared (first use in this function)
 conftest.c:5:57: note: each undeclared identifier is reported only once for each function it appears in
-conftest.c:5:32: warning: variable 'p' set but not used [-Wunused-but-set-variable]
+conftest.c:5:32: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
 checked program was:
 /* begin */
  1: #include "ruby.h"
@@ -163,8 +163,8 @@ checked program was:
 /* end */
 
 "gcc -o conftest -I/usr/local/include/ruby-2.0.0/x86_64-linux -I/usr/local/include/ruby-2.0.0/ruby/backward -I/usr/local/include/ruby-2.0.0 -I.    -D_GNU_SOURCE  -D_BSD_SOURCE   -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration conftest.c  -L. -L/usr/local/lib -Wl,-R/usr/local/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/local/lib -L/usr/local/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
-conftest.c: In function 't':
-conftest.c:5:1: warning: implicit declaration of function 'rb_thread_io_blocking_region' [-Wimplicit-function-declaration]
+conftest.c: In function ‘t’:
+conftest.c:5:1: warning: implicit declaration of function ‘rb_thread_io_blocking_region’ [-Wimplicit-function-declaration]
 checked program was:
 /* begin */
  1: #include "ruby.h"
