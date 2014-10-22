@@ -5,11 +5,11 @@ require File.expand_path('../application', __FILE__)
 DeviseAuthenticationApi::Application.initialize!
 
 smtp_settings = {
-  address:        {{ SMTP_SERVER }} || 'smtp.sendgrid.net',
-  port:           {{ SMTP_PORT }} || '587',
+  address:        "{{ SMTP_SERVER }}" || 'smtp.sendgrid.net',
+  port:           "{{ SMTP_PORT }}" || '587',
   authentication: :plain,
-  user_name:      {{ SMTP_USERNAME }},
-  password:       {{ SMTP_PASSWORD }},
+  user_name:      "{{ SMTP_USERNAME }}",
+  password:       "{{ SMTP_PASSWORD }}",
   enable_starttls_auto: true
 }
 
