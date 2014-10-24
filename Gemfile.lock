@@ -1,13 +1,13 @@
 GIT
   remote: git://github.com/mongoid/mongoid.git
-  revision: df4580b84e173081cd2c51de989722e2aa0b56a5
-  ref: df4580b
+  revision: 50b633c8baf2fa467e8c36b18a013a2cd50e0454
+  ref: 50b633c
   specs:
     mongoid (4.0.0)
-      activemodel (~> 4.0.0)
-      moped (~> 2.0.beta3)
-      origin (~> 1.0)
-      tzinfo (~> 0.3.37)
+      activemodel (~> 4.0)
+      moped (~> 2.0.0)
+      origin (~> 2.1)
+      tzinfo (>= 0.3.37)
 
 GEM
   remote: https://rubygems.org/
@@ -39,7 +39,7 @@ GEM
     arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
-    bson (2.1.0)
+    bson (2.3.0)
     builder (3.1.4)
     celluloid (0.15.2)
       timers (~> 1.1.0)
@@ -47,7 +47,7 @@ GEM
       celluloid (>= 0.15.0)
       nio4r (>= 0.5.0)
     coderay (1.1.0)
-    connection_pool (1.2.0)
+    connection_pool (2.0.0)
     database_cleaner (1.2.0)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
@@ -83,14 +83,14 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     minitest (4.7.5)
-    moped (2.0.0.beta5)
-      bson (~> 2.1)
-      connection_pool (~> 1.2)
+    moped (2.0.1)
+      bson (~> 2.2)
+      connection_pool (~> 2.0)
       optionable (~> 0.2.0)
     multi_json (1.8.4)
     nio4r (1.0.0)
     optionable (0.2.0)
-    origin (1.1.0)
+    origin (2.1.1)
     orm_adapter (0.5.0)
     polyglot (0.3.3)
     pry (0.9.12.6)

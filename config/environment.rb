@@ -4,13 +4,9 @@ require File.expand_path('../application', __FILE__)
 # Initialize the Rails application.
 DeviseAuthenticationApi::Application.initialize!
 
-smtp_settings = {
-  address:        "smtp.sendgrid.net" || 'smtp.sendgrid.net',
-  port:           "587" || '587',
-  authentication: :plain,
-  user_name:      "opg-backoffice",
-  password:       "UYTFGKJBJgvjhkjYTFGKHKHjhbkhjvyRKJJHV",
-  enable_starttls_auto: true
+smtp_settings = { 
+  address:        "localhost" || 'smtp.sendgrid.net',
+  port:           "25" || '587'
 }
 
 smtp_settings.merge!(domain: ENV['SMTP_DOMAIN']) unless ENV['SMTP_DOMAIN'].blank?
